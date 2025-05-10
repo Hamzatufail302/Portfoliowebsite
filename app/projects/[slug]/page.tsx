@@ -61,33 +61,187 @@ const projectsData = {
     images: [5, 6, 7],
   },
 
-  // Multimedia Projects
-  "motion-graphics": {
-    title: "Motion Graphics",
-    category: "Multimedia",
-    description:
-      "A series of motion graphics animations for a marketing campaign, including animated logos, transitions, and visual effects. These dynamic visuals enhance brand storytelling and create engaging content for digital platforms.",
+  // Graphic Design - Print Projects
+  "crunch-brand-print": {
+    title: "Crunch Brand Print Design",
+    category: "Print Design",
+    description: "Print design materials for Crunch Brand, including business cards, brochures, and marketing collateral. The designs maintain brand consistency while delivering impactful messaging.",
+    projectType: "graphic-design/print",
+    projectName: "crunch-brand",
     imageSection: "projects",
-    imageIndex: 6,
-    images: [6, 7, 8],
+    imageIndex: 0,
+    images: [0, 1],
+    imageCount: 2,
+    isMultimedia: false
   },
-  "video-editing": {
-    title: "Video Editing",
-    category: "Multimedia",
-    description:
-      "Professional video editing for a corporate promotional video, including color grading, transitions, and sound design. The editing enhances the narrative flow and creates a polished final product that effectively communicates the client's message.",
+  "energizer-sustainable-print": {
+    title: "Energizer Sustainable Print Design",
+    category: "Print Design",
+    description: "Print design collection for Energizer Sustainable Solutions, featuring eco-friendly materials and sustainable design practices in marketing collateral.",
+    projectType: "graphic-design/print",
+    projectName: "energizer-sustainable",
     imageSection: "projects",
-    imageIndex: 7,
-    images: [7, 8, 9],
+    imageIndex: 2,
+    images: [2, 3],
+    imageCount: 2,
+    isMultimedia: false
   },
-  "3d-animation": {
-    title: "3D Animation",
-    category: "Multimedia",
-    description:
-      "A 3D animation project for a product showcase, including modeling, texturing, animation, and rendering. The animation highlights the product's features and benefits in an engaging and visually stunning way.",
+  "zenith-architecture-print": {
+    title: "Zenith Architecture Print Design",
+    category: "Print Design",
+    description: "Print design materials for Zenith Architecture, showcasing architectural projects through high-quality brochures and presentation materials.",
+    projectType: "graphic-design/print",
+    projectName: "zenith-architecture",
     imageSection: "projects",
-    imageIndex: 8,
-    images: [8, 9, 0],
+    imageIndex: 4,
+    images: [4, 5],
+    imageCount: 2,
+    isMultimedia: false
+  },
+
+  // Multimedia Projects - Animations
+  "bloom-animation": {
+    title: "Bloom Animation",
+    category: "Lottie Animation/Motion Graphics",
+    description: "Engaging Lottie animation for the Bloom website, featuring smooth transitions and interactive elements that enhance user experience.",
+    projectType: "multimedia/lottie-motion-graphic",
+    projectName: "bloom-animation",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0],
+    imageCount: 1,
+    isMultimedia: true,
+    videoUrl: "/videos/projects/bloom-animation/video.mp4"
+  },
+  "brand-bridge-animation": {
+    title: "Brand Bridge",
+    category: "Lottie Animation/Motion Graphics",
+    description: "Dynamic motion graphics for Brand Bridge, showcasing brand elements through fluid animations and creative transitions.",
+    projectType: "multimedia/lottie-motion-graphic",
+    projectName: "brand-bridge",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0],
+    imageCount: 1,
+    isMultimedia: true,
+    videoUrl: "/videos/projects/brand-bridge/video.mp4"
+  },
+  "fitness-app-animation": {
+    title: "Fitness App Animation",
+    category: "Lottie Animation/Motion Graphics",
+    description: "Interactive Lottie animations for a fitness application, bringing workout instructions and achievements to life.",
+    projectType: "multimedia/lottie-motion-graphic",
+    projectName: "fitness-app-animation",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0],
+    imageCount: 1,
+    isMultimedia: true,
+    videoUrl: "/videos/projects/fitness-app/video.mp4"
+  },
+  "cartease-animation": {
+    title: "CartEase Animation",
+    category: "Lottie Animation/Motion Graphics",
+    description: "Smooth and engaging animations for the CartEase e-commerce platform, enhancing the shopping experience.",
+    projectType: "multimedia/lottie-motion-graphic",
+    projectName: "cartease",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0],
+    imageCount: 1,
+    isMultimedia: true,
+    videoUrl: "/videos/projects/cartease/video.mp4"
+  },
+  "marwen-animation": {
+    title: "Marwen Animation",
+    category: "Lottie Animation/Motion Graphics",
+    description: "Creative motion graphics for Marwen, combining artistic elements with fluid animations.",
+    projectType: "multimedia/lottie-motion-graphic",
+    projectName: "marwen-animation",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0],
+    imageCount: 1,
+    isMultimedia: true,
+    videoUrl: "/videos/projects/Marwen/video.mp4"
+  },
+  "mobile-animation": {
+    title: "Mobile UI Animation",
+    category: "Lottie Animation/Motion Graphics",
+    description: "Micro-interactions and UI animations for mobile applications, enhancing user engagement and feedback.",
+    projectType: "multimedia/lottie-motion-graphic",
+    projectName: "mobile-animation",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0],
+    imageCount: 1,
+    isMultimedia: true,
+    videoUrl: "/videos/projects/mobile-animation/video.mp4"
+  },
+  "upward-animation": {
+    title: "Upward Animation",
+    category: "Lottie Animation/Motion Graphics",
+    description: "Motion graphics for the Upward platform, featuring animated data visualizations and UI elements.",
+    projectType: "multimedia/lottie-motion-graphic",
+    projectName: "upward-animation",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0],
+    imageCount: 1,
+    isMultimedia: true,
+    videoUrl: "/videos/projects/upward/video.mp4"
+  },
+  "shadow-nexus-animation": {
+    title: "Shadow Nexus Animation",
+    category: "Lottie Animation/Motion Graphics",
+    description: "Dynamic gaming animations for Shadow Nexus, bringing game elements and interactions to life.",
+    projectType: "multimedia/lottie-motion-graphic",
+    projectName: "shadow-nexus",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0],
+    imageCount: 1,
+    isMultimedia: true,
+    videoUrl: "/videos/projects/shadow-nexus/video.mp4"
+  },
+  "voice-changer-animation": {
+    title: "Voice Changer Animation",
+    category: "Lottie Animation/Motion Graphics",
+    description: "Creative animations for the Voice Changer app, visualizing audio transformations and effects.",
+    projectType: "multimedia/lottie-motion-graphic",
+    projectName: "voice-changer-animation",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0],
+    imageCount: 1,
+    isMultimedia: true,
+    videoUrl: "/videos/projects/voice-changer/video.mp4"
+  },
+
+  // Video Editing Projects
+  "corporate-video": {
+    title: "Corporate Overview Video",
+    category: "Video Editing",
+    description: "Professional corporate video showcasing company culture, values, and achievements through compelling storytelling.",
+    projectType: "multimedia/video-editing",
+    projectName: "corporate-video",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0],
+    imageCount: 1,
+    isMultimedia: true
+  },
+  "product-video": {
+    title: "Product Launch Video",
+    category: "Video Editing",
+    description: "Dynamic product launch video highlighting features and benefits through professional editing and visual effects.",
+    projectType: "multimedia/video-editing",
+    projectName: "product-video",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0],
+    imageCount: 1,
+    isMultimedia: true
   },
 
   // Web UI Projects
@@ -136,61 +290,187 @@ const projectsData = {
     imageIndex: 4,
     images: [4, 5, 6],
   },
-
-  // Mobile App UI Projects
-  "fitness-app": {
-    title: "Fitness App",
-    category: "Mobile UI Design",
-    description:
-      "A fitness app design with features for workout tracking, nutrition planning, and progress monitoring. The design focuses on motivation and ease of use to help users achieve their fitness goals.",
+  "academic-stars": {
+    title: "Academic Stars Website",
+    category: "Web UI Design",
+    description: "A modern educational website design for Academic Stars, featuring an intuitive interface for students and educators.",
+    projectType: "web-mobile/web-ui",
+    projectName: "academic-stars",
     imageSection: "projects",
-    imageIndex: 5,
-    images: [5, 6, 7],
+    imageIndex: 0,
+    images: [0, 1, 2, 3, 4, 5, 6, 7],
+    imageCount: 8,
+    isMultimedia: false
   },
-  "food-delivery-app": {
-    title: "Food Delivery App",
-    category: "Mobile UI Design",
-    description:
-      "A food delivery app design with features for restaurant browsing, menu exploration, order placement, and delivery tracking. The design prioritizes a seamless ordering experience.",
+  "bloom": {
+    title: "Bloom Website",
+    category: "Web UI Design",
+    description: "A vibrant and engaging website design for Bloom, showcasing their services with a modern and clean interface.",
+    projectType: "web-mobile/web-ui",
+    projectName: "bloom",
     imageSection: "projects",
-    imageIndex: 6,
-    images: [6, 7, 8],
+    imageIndex: 0,
+    images: [0, 1, 2, 3, 4, 5],
+    imageCount: 6,
+    isMultimedia: false
   },
-  "social-media-app": {
-    title: "Social Media App",
-    category: "Mobile UI Design",
-    description:
-      "A social media app design with features for content sharing, user interaction, and profile management. The design focuses on engagement and community building.",
-    imageSection: "projects",
-    imageIndex: 7,
-    images: [7, 8, 9],
-  },
-  "travel-app": {
-    title: "Travel App",
-    category: "Mobile UI Design",
-    description:
-      "A travel app design with features for destination discovery, itinerary planning, and booking management. The design emphasizes inspiration and practical travel tools.",
-    imageSection: "projects",
-    imageIndex: 8,
-    images: [8, 9, 0],
-  },
-  "e-commerce-app": {
-    title: "E-commerce App",
-    category: "Mobile UI Design",
-    description:
-      "A mobile e-commerce app design with features for product browsing, wishlist management, and secure checkout. The design focuses on a seamless shopping experience on mobile devices.",
-    imageSection: "projects",
-    imageIndex: 9,
-    images: [9, 0, 1],
-  },
-  "music-player-app": {
-    title: "Music Player App",
-    category: "Mobile UI Design",
-    description:
-      "A music player app design with features for playlist management, music discovery, and audio playback. The design emphasizes intuitive controls and visual appeal.",
+  "brandbridge": {
+    title: "BrandBridge Website",
+    category: "Web UI Design",
+    description: "A professional website design for BrandBridge, focusing on brand storytelling and client engagement.",
+    projectType: "web-mobile/web-ui",
+    projectName: "brandbridge",
     imageSection: "projects",
     imageIndex: 0,
     images: [0, 1, 2],
+    imageCount: 3,
+    isMultimedia: false
+  },
+  "comfort-corner": {
+    title: "Comfort Corner Website",
+    category: "Web UI Design",
+    description: "An inviting e-commerce website design for Comfort Corner, offering a seamless shopping experience.",
+    projectType: "web-mobile/web-ui",
+    projectName: "comfort-corner",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0, 1, 2],
+    imageCount: 3,
+    isMultimedia: false
+  },
+  "e-commerce-tech-nest": {
+    title: "E-commerce Tech Nest",
+    category: "Web UI Design",
+    description: "A cutting-edge e-commerce platform design for Tech Nest, featuring a modern and user-friendly interface.",
+    projectType: "web-mobile/web-ui",
+    projectName: "e-commerce-tech-nest",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0, 1, 2],
+    imageCount: 3,
+    isMultimedia: false
+  },
+  "learn-sphere": {
+    title: "Learn Sphere Website",
+    category: "Web UI Design",
+    description: "An educational platform design for Learn Sphere, creating an engaging learning environment.",
+    projectType: "web-mobile/web-ui",
+    projectName: "learn-sphere",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0, 1, 2],
+    imageCount: 3,
+    isMultimedia: false
+  },
+  "marketit": {
+    title: "MarketIT Website",
+    category: "Web UI Design",
+    description: "A dynamic marketing agency website design for MarketIT, highlighting their services and portfolio.",
+    projectType: "web-mobile/web-ui",
+    projectName: "marketit",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0, 1, 2],
+    imageCount: 3,
+    isMultimedia: false
+  },
+  "shadow-nexus-gaming": {
+    title: "Shadow Nexus Gaming",
+    category: "Web UI Design",
+    description: "An immersive gaming website design for Shadow Nexus, creating an engaging platform for gamers.",
+    projectType: "web-mobile/web-ui",
+    projectName: "shadow-nexus-gaming",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0, 1, 2, 3, 4],
+    imageCount: 5,
+    isMultimedia: false
+  },
+  "upward": {
+    title: "Upward Website",
+    category: "Web UI Design",
+    description: "A professional business website design for Upward, showcasing their growth solutions.",
+    projectType: "web-mobile/web-ui",
+    projectName: "upward",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0, 1, 2, 3, 4],
+    imageCount: 5,
+    isMultimedia: false
+  },
+
+  // Mobile App UI Projects
+  "blocksite": {
+    title: "Blocksite App",
+    category: "Mobile UI Design",
+    description: "A comprehensive mobile app design for blocking unwanted content and managing screen time effectively.",
+    projectType: "web-mobile/mobile-ui",
+    projectName: "blocksite",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0, 1, 2, 3, 4, 5, 6],
+    imageCount: 7,
+    isMultimedia: false
+  },
+  "call-announcer": {
+    title: "Call Announcer",
+    category: "Mobile UI Design",
+    description: "An intuitive mobile app design for call announcement features with customizable voice options.",
+    projectType: "web-mobile/mobile-ui",
+    projectName: "call-announcer",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0, 1, 2, 3, 4, 5],
+    imageCount: 6,
+    isMultimedia: false
+  },
+  "call-recorder": {
+    title: "Call Recorder",
+    category: "Mobile UI Design",
+    description: "A user-friendly call recording app design with intuitive controls and organized recording management.",
+    projectType: "web-mobile/mobile-ui",
+    projectName: "call-recorder",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0, 1, 2, 3, 4, 5],
+    imageCount: 6,
+    isMultimedia: false
+  },
+  "carteasy": {
+    title: "CartEase",
+    category: "Mobile UI Design",
+    description: "A modern e-commerce mobile app design focused on simplifying the shopping experience.",
+    projectType: "web-mobile/mobile-ui",
+    projectName: "carteasy",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0, 1, 2, 3, 4, 5, 6],
+    imageCount: 7,
+    isMultimedia: false
+  },
+  "meal-mate": {
+    title: "Meal Mate",
+    category: "Mobile UI Design",
+    description: "A meal planning and recipe discovery app design with a focus on healthy eating habits.",
+    projectType: "web-mobile/mobile-ui",
+    projectName: "meal-mate",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+    imageCount: 9,
+    isMultimedia: false
+  },
+  "voice-changer": {
+    title: "Voice Changer",
+    category: "Mobile UI Design",
+    description: "An entertaining voice modification app design with various sound effects and easy-to-use controls.",
+    projectType: "web-mobile/mobile-ui",
+    projectName: "voice-changer",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0, 1, 2, 3, 4, 5, 6],
+    imageCount: 7,
+    isMultimedia: false
   },
 
   // Animation Projects
@@ -202,6 +482,7 @@ const projectsData = {
     imageSection: "projects",
     imageIndex: 1,
     images: [1, 2, 3],
+    isMultimedia: true
   },
   "logo-animation": {
     title: "Logo Animation",
@@ -211,6 +492,7 @@ const projectsData = {
     imageSection: "projects",
     imageIndex: 2,
     images: [2, 3, 4],
+    isMultimedia: true
   },
   "character-animation": {
     title: "Character Animation",
@@ -220,18 +502,10 @@ const projectsData = {
     imageSection: "projects",
     imageIndex: 3,
     images: [3, 4, 5],
+    isMultimedia: true
   },
 
   // Video Editing Projects
-  "corporate-video": {
-    title: "Corporate Video",
-    category: "Video Editing",
-    description:
-      "Professional video editing for corporate communications, including company profiles, product launches, and internal communications. The editing style is clean, professional, and aligned with brand guidelines.",
-    imageSection: "projects",
-    imageIndex: 4,
-    images: [4, 5, 6],
-  },
   "product-showcase": {
     title: "Product Showcase",
     category: "Video Editing",
@@ -240,6 +514,7 @@ const projectsData = {
     imageSection: "projects",
     imageIndex: 5,
     images: [5, 6, 7],
+    isMultimedia: true
   },
   "event-highlights": {
     title: "Event Highlights",
@@ -249,6 +524,7 @@ const projectsData = {
     imageSection: "projects",
     imageIndex: 6,
     images: [6, 7, 8],
+    isMultimedia: true
   },
 
   // Motion Graphics Projects
@@ -260,6 +536,7 @@ const projectsData = {
     imageSection: "projects",
     imageIndex: 7,
     images: [7, 8, 9],
+    isMultimedia: true
   },
   "infographic-animation": {
     title: "Infographic Animation",
@@ -269,6 +546,7 @@ const projectsData = {
     imageSection: "projects",
     imageIndex: 8,
     images: [8, 9, 0],
+    isMultimedia: true
   },
   "ui-motion": {
     title: "UI Motion",
@@ -278,6 +556,7 @@ const projectsData = {
     imageSection: "projects",
     imageIndex: 9,
     images: [9, 0, 1],
+    isMultimedia: true
   },
 
   // Social Media Projects
@@ -308,6 +587,54 @@ const projectsData = {
     imageIndex: 2,
     images: [2, 3, 4],
   },
+  "energizer-ads": {
+    title: "Energizer Ads Campaign",
+    category: "Social Media Design",
+    description: "A dynamic social media advertising campaign for Energizer, showcasing sustainable energy solutions.",
+    projectType: "graphic-design/social-media",
+    projectName: "energizer-ads",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0],
+    imageCount: 1,
+    isMultimedia: false
+  },
+  "face-swap": {
+    title: "Face Swap App SS Design",
+    category: "Social Media Design",
+    description: "Social media design and promotional materials for an innovative face swap application.",
+    projectType: "graphic-design/social-media",
+    projectName: "face-swap",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0, 1, 2, 3, 4],
+    imageCount: 5,
+    isMultimedia: false
+  },
+  "jewelry-social": {
+    title: "Jewelry Brand Social Media Post",
+    category: "Social Media Design",
+    description: "Elegant social media content design for a luxury jewelry brand, showcasing exquisite pieces with sophisticated visual aesthetics.",
+    projectType: "graphic-design/social-media",
+    projectName: "jewelry-social",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0],
+    imageCount: 1,
+    isMultimedia: false
+  },
+  "zenith-social": {
+    title: "Zenith Brand Social Media",
+    category: "Social Media Design",
+    description: "Engaging social media content design for Zenith Architecture, featuring modern and professional aesthetics.",
+    projectType: "graphic-design/social-media",
+    projectName: "zenith-social",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0],
+    imageCount: 1,
+    isMultimedia: false
+  },
 
   // Print Design Projects
   "business-cards": {
@@ -336,6 +663,42 @@ const projectsData = {
     imageSection: "projects",
     imageIndex: 5,
     images: [5, 6, 7],
+  },
+  "energizer-sustainable": {
+    title: "Energizer Sustainable",
+    category: "Branding",
+    description: "A comprehensive branding project for Energizer Sustainable, focusing on eco-friendly energy solutions.",
+    projectType: "graphic-design/branding",
+    projectName: "energizer-sustainable",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    imageCount: 13,
+    isMultimedia: false
+  },
+  "zenith-architecture": {
+    title: "Zenith Architecture",
+    category: "Branding",
+    description: "A sophisticated branding design for Zenith Architecture, reflecting modern architectural aesthetics.",
+    projectType: "graphic-design/branding",
+    projectName: "zenith-architecture",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    imageCount: 10,
+    isMultimedia: false
+  },
+  "crunch-brand": {
+    title: "Crunch Brand",
+    category: "Branding",
+    description: "A dynamic and energetic branding project for Crunch, emphasizing fitness and wellness.",
+    projectType: "graphic-design/branding",
+    projectName: "crunch-brand",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+    imageCount: 12,
+    isMultimedia: false
   },
 }
 

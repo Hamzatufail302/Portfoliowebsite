@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} mx-0 sm:mx-2 md:mx-0`}>
+      <body className="bg-white dark:bg-gray-950">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <ScrollToTop />
           {children}

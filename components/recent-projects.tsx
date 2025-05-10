@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import ProjectCard from "@/components/project-card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -13,8 +13,20 @@ const categories = [
   { id: "multimedia", name: "Multimedia", service: "/services/multimedia" },
 ]
 
+interface Project {
+  title: string
+  category: string
+  imageSection: string
+  imageIndex: number
+  slug: string
+  isMultimedia?: boolean
+  projectType?: string
+  projectName?: string
+  videoUrl?: string
+}
+
 // Sample project data
-const projectsData = {
+const projectsData: Record<string, Project[]> = {
   "ui-ux": [
     {
       title: "Mobile App Design",
@@ -63,38 +75,58 @@ const projectsData = {
   ],
   multimedia: [
     {
-      title: "Motion Graphics",
-      category: "Multimedia",
+      title: "Bloom Animation",
+      category: "Lottie Animation/Motion Graphics",
       imageSection: "projects",
-      imageIndex: 6,
-      slug: "motion-graphics",
+      imageIndex: 0,
+      slug: "bloom-animation",
+      isMultimedia: true,
+      projectType: "multimedia/lottie-motion-graphic",
+      projectName: "bloom-animation",
+      videoUrl: "/videos/projects/bloom-animation/video.mp4"
     },
     {
-      title: "Video Editing",
-      category: "Multimedia",
+      title: "Brand Bridge",
+      category: "Lottie Animation/Motion Graphics",
       imageSection: "projects",
-      imageIndex: 7,
-      slug: "video-editing",
+      imageIndex: 0,
+      slug: "brand-bridge-animation",
+      isMultimedia: true,
+      projectType: "multimedia/lottie-motion-graphic",
+      projectName: "brand-bridge",
+      videoUrl: "/videos/projects/brand-bridge/video.mp4"
     },
     {
-      title: "3D Animation",
-      category: "Multimedia",
+      title: "CartEase Animation",
+      category: "Lottie Animation/Motion Graphics",
       imageSection: "projects",
-      imageIndex: 8,
-      slug: "3d-animation",
-    },
+      imageIndex: 0,
+      slug: "cartease-animation",
+      isMultimedia: true,
+      projectType: "multimedia/lottie-motion-graphic",
+      projectName: "cartease",
+      videoUrl: "/videos/projects/cartease/video.mp4"
+    }
   ],
 }
 
 export default function RecentProjects() {
-  // Set the default active category to "ui-ux"
   const [activeCategory, setActiveCategory] = useState("ui-ux")
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   // Get the projects for the active category
   const activeProjects = projectsData[activeCategory as keyof typeof projectsData] || []
 
   // Get the service URL for the active category
   const serviceUrl = categories.find((cat) => cat.id === activeCategory)?.service || "#"
+
+  if (!mounted) {
+    return null
+  }
 
   return (
     <div className="space-y-8">
@@ -141,6 +173,10 @@ export default function RecentProjects() {
               title={project.title}
               category={project.category}
               slug={project.slug}
+              isMultimedia={project.isMultimedia}
+              projectType={project.projectType}
+              projectName={project.projectName}
+              videoUrl={project.videoUrl}
             />
           </motion.div>
         ))}

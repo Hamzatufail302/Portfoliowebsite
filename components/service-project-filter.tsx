@@ -1,9 +1,12 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo, useCallback } from "react"
 import ProjectGrid from "@/components/project-grid"
 import { motion } from "framer-motion"
-import { StaggerContainer } from "@/components/animations"
+import { StaggerContainer, fadeInUp } from "@/components/animations"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import ImageDisplay from "@/components/image-display"
 
 interface Category {
   id: string
@@ -15,6 +18,10 @@ interface Project {
   category: string
   image: string
   slug: string
+  isMultimedia?: boolean
+  projectType: string
+  projectName: string
+  videoUrl?: string
 }
 
 interface ServiceProjectFilterProps {
@@ -22,243 +29,450 @@ interface ServiceProjectFilterProps {
 }
 
 // Sample project data for all categories
-const projectsData: Record<string, Project[]> = {
+const projectData: Record<string, Project[]> = {
   // Web UI projects
   "web-ui": [
     {
-      title: "E-commerce Website",
+      title: "Academic Stars Website",
       category: "Web UI Design",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "e-commerce-website",
+      image: "/images/projects/web-mobile/web-ui/academic-stars/image-1.png",
+      slug: "academic-stars",
+      isMultimedia: false,
+      projectType: "web-mobile/web-ui",
+      projectName: "academic-stars"
     },
     {
-      title: "Portfolio Website",
+      title: "Bloom Website",
       category: "Web UI Design",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "portfolio-website",
+      image: "/images/projects/web-mobile/web-ui/bloom/image-1.png",
+      slug: "bloom",
+      isMultimedia: false,
+      projectType: "web-mobile/web-ui",
+      projectName: "bloom"
     },
     {
-      title: "Dashboard UI",
+      title: "BrandBridge Website",
       category: "Web UI Design",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "dashboard-ui",
+      image: "/images/projects/web-mobile/web-ui/brandbridge/image-1.png",
+      slug: "brandbridge",
+      isMultimedia: false,
+      projectType: "web-mobile/web-ui",
+      projectName: "brandbridge"
     },
     {
-      title: "Landing Page",
+      title: "Comfort Corner Website",
       category: "Web UI Design",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "landing-page",
+      image: "/images/projects/web-mobile/web-ui/comfort-corner/image-1.png",
+      slug: "comfort-corner",
+      isMultimedia: false,
+      projectType: "web-mobile/web-ui",
+      projectName: "comfort-corner"
     },
     {
-      title: "Blog Platform",
+      title: "E-commerce Tech Nest",
       category: "Web UI Design",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "blog-platform",
+      image: "/images/projects/web-mobile/web-ui/e-commerce-tech-nest/image-1.png",
+      slug: "e-commerce-tech-nest",
+      isMultimedia: false,
+      projectType: "web-mobile/web-ui",
+      projectName: "e-commerce-tech-nest"
     },
     {
-      title: "Admin Panel",
+      title: "Learn Sphere Website",
       category: "Web UI Design",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "admin-panel",
+      image: "/images/projects/web-mobile/web-ui/learn-sphere/image-1.png",
+      slug: "learn-sphere",
+      isMultimedia: false,
+      projectType: "web-mobile/web-ui",
+      projectName: "learn-sphere"
     },
+    {
+      title: "MarketIT Website",
+      category: "Web UI Design",
+      image: "/images/projects/web-mobile/web-ui/marketit/image-1.png",
+      slug: "marketit",
+      isMultimedia: false,
+      projectType: "web-mobile/web-ui",
+      projectName: "marketit"
+    },
+    {
+      title: "Shadow Nexus Gaming",
+      category: "Web UI Design",
+      image: "/images/projects/web-mobile/web-ui/shadow-nexus-gaming/image-1.png",
+      slug: "shadow-nexus-gaming",
+      isMultimedia: false,
+      projectType: "web-mobile/web-ui",
+      projectName: "shadow-nexus-gaming"
+    },
+    {
+      title: "Upward Website",
+      category: "Web UI Design",
+      image: "/images/projects/web-mobile/web-ui/upward/image-1.png",
+      slug: "upward",
+      isMultimedia: false,
+      projectType: "web-mobile/web-ui",
+      projectName: "upward"
+    }
   ],
 
   // Mobile App UI projects
   "mobile-app-ui": [
     {
-      title: "Fitness App",
+      title: "Blocksite App",
       category: "Mobile UI Design",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "fitness-app",
+      image: "/images/projects/web-mobile/mobile-ui/blocksite/image-1.png",
+      slug: "blocksite",
+      isMultimedia: false,
+      projectType: "web-mobile/mobile-ui",
+      projectName: "blocksite"
     },
     {
-      title: "Food Delivery App",
+      title: "Call Announcer",
       category: "Mobile UI Design",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "food-delivery-app",
+      image: "/images/projects/web-mobile/mobile-ui/call-announcer/image-1.png",
+      slug: "call-announcer",
+      isMultimedia: false,
+      projectType: "web-mobile/mobile-ui",
+      projectName: "call-announcer"
     },
     {
-      title: "Social Media App",
+      title: "Call Recorder",
       category: "Mobile UI Design",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "social-media-app",
+      image: "/images/projects/web-mobile/mobile-ui/call-recorder/image-1.png",
+      slug: "call-recorder",
+      isMultimedia: false,
+      projectType: "web-mobile/mobile-ui",
+      projectName: "call-recorder"
     },
     {
-      title: "Travel App",
+      title: "CartEase",
       category: "Mobile UI Design",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "travel-app",
+      image: "/images/projects/web-mobile/mobile-ui/carteasy/image-1.png",
+      slug: "carteasy",
+      isMultimedia: false,
+      projectType: "web-mobile/mobile-ui",
+      projectName: "carteasy"
     },
     {
-      title: "E-commerce App",
+      title: "Meal Mate",
       category: "Mobile UI Design",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "e-commerce-app",
+      image: "/images/projects/web-mobile/mobile-ui/meal-mate/image-1.png",
+      slug: "meal-mate",
+      isMultimedia: false,
+      projectType: "web-mobile/mobile-ui",
+      projectName: "meal-mate"
     },
     {
-      title: "Music Player App",
+      title: "Voice Changer",
       category: "Mobile UI Design",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "music-player-app",
-    },
+      image: "/images/projects/web-mobile/mobile-ui/voice-changer/image-1.png",
+      slug: "voice-changer",
+      isMultimedia: false,
+      projectType: "web-mobile/mobile-ui",
+      projectName: "voice-changer"
+    }
   ],
 
   // Branding projects
   branding: [
     {
-      title: "Restaurant Branding",
+      title: "Crunch Brand Identity",
       category: "Branding",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "restaurant-branding",
+      image: "/images/projects/graphic-design/branding/crunch-brand/image-1.png",
+      slug: "crunch-brand",
+      isMultimedia: false,
+      projectType: "graphic-design/branding",
+      projectName: "crunch-brand"
     },
     {
-      title: "Tech Startup Branding",
+      title: "Energizer Sustainable Solutions",
       category: "Branding",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "tech-startup-branding",
+      image: "/images/projects/graphic-design/branding/energizer-sustainable/image-1.png",
+      slug: "energizer-sustainable",
+      isMultimedia: false,
+      projectType: "graphic-design/branding",
+      projectName: "energizer-sustainable"
     },
     {
-      title: "Fashion Brand Identity",
+      title: "Zenith Architecture & Interiors",
       category: "Branding",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "fashion-brand-identity",
+      image: "/images/projects/graphic-design/branding/zenith-architecture/image-1.png",
+      slug: "zenith-architecture",
+      isMultimedia: false,
+      projectType: "graphic-design/branding",
+      projectName: "zenith-architecture"
+    }
+  ],
+
+  // Print Design projects
+  "print-design": [
+    {
+      title: "Crunch Brand Print Design",
+      category: "Print Design",
+      image: "/images/projects/graphic-design/print/crunch-brand/image-1.png",
+      slug: "crunch-brand-print",
+      isMultimedia: false,
+      projectType: "graphic-design/print",
+      projectName: "crunch-brand"
     },
+    {
+      title: "Energizer Sustainable Print Design",
+      category: "Print Design",
+      image: "/images/projects/graphic-design/print/energizer-sustainable/image-1.png",
+      slug: "energizer-sustainable-print",
+      isMultimedia: false,
+      projectType: "graphic-design/print",
+      projectName: "energizer-sustainable"
+    },
+    {
+      title: "Zenith Architecture Print Design",
+      category: "Print Design",
+      image: "/images/projects/graphic-design/print/zenith-architecture/image-1.png",
+      slug: "zenith-architecture-print",
+      isMultimedia: false,
+      projectType: "graphic-design/print",
+      projectName: "zenith-architecture"
+    }
+  ],
+
+  // Social Media projects
+  "social-media": [
+    {
+      title: "Energizer Ads Campaign",
+      category: "Social Media Design",
+      image: "/images/projects/graphic-design/social-media/energizer-ads/image-1.png",
+      slug: "energizer-ads",
+      isMultimedia: false,
+      projectType: "graphic-design/social-media",
+      projectName: "energizer-ads"
+    },
+    {
+      title: "Face Swap App SS Design",
+      category: "Social Media Design",
+      image: "/images/projects/graphic-design/social-media/face-swap/image-1.png",
+      slug: "face-swap",
+      isMultimedia: false,
+      projectType: "graphic-design/social-media",
+      projectName: "face-swap"
+    },
+    {
+      title: "Zenith Brand Social Media",
+      category: "Social Media Design",
+      image: "/images/projects/graphic-design/social-media/zenith-social/image-1.png",
+      slug: "zenith-social",
+      isMultimedia: false,
+      projectType: "graphic-design/social-media",
+      projectName: "zenith-social"
+    },
+    {
+      title: "Jewelry Brand Social Media Post",
+      category: "Social Media Design",
+      image: "/images/projects/graphic-design/social-media/jewelry-social/image-1.png",
+      slug: "jewelry-social",
+      isMultimedia: false,
+      projectType: "graphic-design/social-media",
+      projectName: "jewelry-social"
+    }
   ],
 
   // Other categories
   animations: [
     {
-      title: "Product Animation",
-      category: "Animation",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "product-animation",
+      title: "Bloom Animation",
+      category: "Lottie Animation/Motion Graphics",
+      image: "/images/projects/multimedia/lottie-motion-graphic/bloom-animation/image-1.png",
+      slug: "bloom-animation",
+      isMultimedia: true,
+      projectType: "multimedia/lottie-motion-graphic",
+      projectName: "bloom-animation",
+      videoUrl: "/videos/projects/bloom-animation/video.mp4"
     },
     {
-      title: "Logo Animation",
-      category: "Animation",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "logo-animation",
+      title: "Brand Bridge",
+      category: "Lottie Animation/Motion Graphics",
+      image: "/images/projects/multimedia/lottie-motion-graphic/brand-bridge/image-1.png",
+      slug: "brand-bridge-animation",
+      isMultimedia: true,
+      projectType: "multimedia/lottie-motion-graphic",
+      projectName: "brand-bridge",
+      videoUrl: "/videos/projects/brand-bridge/video.mp4"
     },
     {
-      title: "Character Animation",
-      category: "Animation",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "character-animation",
+      title: "Fitness App Animation",
+      category: "Lottie Animation/Motion Graphics",
+      image: "/images/projects/multimedia/lottie-motion-graphic/fitness-app-animation/image-1.png",
+      slug: "fitness-app-animation",
+      isMultimedia: true,
+      projectType: "multimedia/lottie-motion-graphic",
+      projectName: "fitness-app-animation",
+      videoUrl: "/videos/projects/fitness-app/video.mp4"
     },
+    {
+      title: "CartEase Animation",
+      category: "Lottie Animation/Motion Graphics",
+      image: "/images/projects/multimedia/lottie-motion-graphic/cartease/image-1.png",
+      slug: "cartease-animation",
+      isMultimedia: true,
+      projectType: "multimedia/lottie-motion-graphic",
+      projectName: "cartease",
+      videoUrl: "/videos/projects/cartease/video.mp4"
+    },
+    {
+      title: "Marwen Animation",
+      category: "Lottie Animation/Motion Graphics",
+      image: "/images/projects/multimedia/lottie-motion-graphic/marwen-animation/image-1.png",
+      slug: "marwen-animation",
+      isMultimedia: true,
+      projectType: "multimedia/lottie-motion-graphic",
+      projectName: "marwen-animation",
+      videoUrl: "/videos/projects/Marwen/video.mp4"
+    },
+    {
+      title: "Mobile UI Animation",
+      category: "Lottie Animation/Motion Graphics",
+      image: "/images/projects/multimedia/lottie-motion-graphic/mobile-animation/image-1.png",
+      slug: "mobile-animation",
+      isMultimedia: true,
+      projectType: "multimedia/lottie-motion-graphic",
+      projectName: "mobile-animation",
+      videoUrl: "/videos/projects/mobile-animation/video.mp4"
+    },
+    {
+      title: "Upward Animation",
+      category: "Lottie Animation/Motion Graphics",
+      image: "/images/projects/multimedia/lottie-motion-graphic/upward-animation/image-1.png",
+      slug: "upward-animation",
+      isMultimedia: true,
+      projectType: "multimedia/lottie-motion-graphic",
+      projectName: "upward-animation",
+      videoUrl: "/videos/projects/upward/video.mp4"
+    },
+    {
+      title: "Shadow Nexus Animation",
+      category: "Lottie Animation/Motion Graphics",
+      image: "/images/projects/multimedia/lottie-motion-graphic/shadow-nexus/image-1.png",
+      slug: "shadow-nexus-animation",
+      isMultimedia: true,
+      projectType: "multimedia/lottie-motion-graphic",
+      projectName: "shadow-nexus",
+      videoUrl: "/videos/projects/shadow-nexus/video.mp4"
+    },
+    {
+      title: "Voice Changer Animation",
+      category: "Lottie Animation/Motion Graphics",
+      image: "/images/projects/multimedia/lottie-motion-graphic/voice-changer-animation/image-1.png",
+      slug: "voice-changer-animation",
+      isMultimedia: true,
+      projectType: "multimedia/lottie-motion-graphic",
+      projectName: "voice-changer-animation",
+      videoUrl: "/videos/projects/voice-changer/video.mp4"
+    }
   ],
   "video-editing": [
     {
-      title: "Corporate Video",
+      title: "Corporate Overview Video",
       category: "Video Editing",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/images/projects/multimedia/video-editing/corporate-video/image-1.png",
       slug: "corporate-video",
+      isMultimedia: true,
+      projectType: "multimedia/video-editing",
+      projectName: "corporate-video"
     },
     {
-      title: "Product Showcase",
+      title: "Product Launch Video",
       category: "Video Editing",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "product-showcase",
-    },
-    {
-      title: "Event Highlights",
-      category: "Video Editing",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "event-highlights",
-    },
+      image: "/images/projects/multimedia/video-editing/product-video/image-1.png",
+      slug: "product-video",
+      isMultimedia: true,
+      projectType: "multimedia/video-editing",
+      projectName: "product-video"
+    }
   ],
-  "motion-graphics": [
-    {
-      title: "Explainer Video",
-      category: "Motion Graphics",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "explainer-video",
-    },
-    {
-      title: "Infographic Animation",
-      category: "Motion Graphics",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "infographic-animation",
-    },
-    {
-      title: "UI Motion",
-      category: "Motion Graphics",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "ui-motion",
-    },
-  ],
-  "social-media": [
-    {
-      title: "Instagram Posts",
-      category: "Social Media",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "instagram-posts",
-    },
-    {
-      title: "Facebook Ads",
-      category: "Social Media",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "facebook-ads",
-    },
-    {
-      title: "Twitter Graphics",
-      category: "Social Media",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "twitter-graphics",
-    },
-  ],
-  print: [
-    {
-      title: "Business Cards",
-      category: "Print Design",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "business-cards",
-    },
-    {
-      title: "Brochures",
-      category: "Print Design",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "brochures",
-    },
-    {
-      title: "Posters",
-      category: "Print Design",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "posters",
-    },
-  ],
+}
+
+const ProjectCard = ({ project, currentSection }: { project: Project, currentSection: string }) => {
+  return (
+    <motion.div
+      variants={fadeInUp}
+      className="group relative overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl"
+    >
+      <Link href={`/projects/${project.slug}?from=service&section=${currentSection}`}>
+        <div className={`relative overflow-hidden ${
+          project.slug === "energizer-sustainable" ? "aspect-[3/2]" : "aspect-[4/3]"
+        }`}>
+          <ImageDisplay
+            section="projects"
+            projectType={project.projectType}
+            projectName={project.projectName}
+            index={0}
+            fallbackSrc="/images/placeholder.png"
+            alt={project.title}
+            width={800}
+            height={600}
+            className={`w-full h-full transition-transform duration-300 group-hover:scale-110 ${
+              project.slug === "energizer-sustainable" 
+                ? "object-contain object-left pl-4" 
+                : "object-cover"
+            }`}
+            loading="lazy"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+          <div className="absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <span className="text-white text-lg font-medium">View Project</span>
+          </div>
+        </div>
+        <div className="p-4">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{project.title}</h3>
+          <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{project.category}</p>
+        </div>
+      </Link>
+    </motion.div>
+  )
 }
 
 export default function ServiceProjectFilter({ categories }: ServiceProjectFilterProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>(categories[0]?.id || "")
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const router = useRouter()
 
   // Initialize projects on mount and when categories change
   useEffect(() => {
-    if (categories && categories.length > 0) {
-      setIsLoading(true)
+    // Get section from URL query parameter
+    const urlParams = new URLSearchParams(window.location.search)
+    const section = urlParams.get("section")
+    if (section && categories.some(cat => cat.id === section)) {
+      setSelectedCategory(section)
+      setFilteredProjects(projectData[section] || [])
+    } else {
       const initialCategory = categories[0].id
       setSelectedCategory(initialCategory)
-      setFilteredProjects(projectsData[initialCategory] || [])
-      // Add a small delay to ensure smooth loading transition
-      setTimeout(() => setIsLoading(false), 100)
+      setFilteredProjects(projectData[initialCategory] || [])
     }
-  }, [categories])
+    setIsLoading(false)
 
-  // Update filtered projects when category changes
-  useEffect(() => {
-    if (selectedCategory) {
-      setIsLoading(true)
-      setFilteredProjects(projectsData[selectedCategory] || [])
-      // Add a small delay to ensure smooth loading transition
-      setTimeout(() => setIsLoading(false), 100)
+    // Add popstate event listener for back button
+    const handlePopState = () => {
+      router.push("/")
     }
-  }, [selectedCategory])
+    window.addEventListener("popstate", handlePopState)
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("popstate", handlePopState)
+    }
+  }, [categories, router])
 
   // Handle category change
-  const handleCategoryChange = (categoryId: string) => {
+  const handleCategoryChange = useCallback((categoryId: string) => {
     setSelectedCategory(categoryId)
-  }
+    setFilteredProjects(projectData[categoryId] || [])
+    // Update URL with new section
+    const url = new URL(window.location.href)
+    url.searchParams.set("section", categoryId)
+    window.history.pushState({}, "", url.toString())
+  }, [])
 
   // Loading state
   if (!categories || categories.length === 0) {
@@ -276,15 +490,15 @@ export default function ServiceProjectFilter({ categories }: ServiceProjectFilte
         className="flex flex-wrap gap-4 justify-center mb-8"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       >
         {categories.map((category, index) => (
           <motion.button
             key={category.id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1, duration: 0.5 }}
-            className={`px-6 py-3 rounded-full text-sm font-medium transition-colors ${
+            transition={{ delay: index * 0.05, duration: 0.3 }}
+            className={`px-6 py-3 rounded-full text-sm font-medium transition-transform hover:scale-105 ${
               selectedCategory === category.id
                 ? "bg-gradient-to-r from-[#FF4444] to-[#FF5E42] text-white shadow-md shadow-[#FF4444]/20"
                 : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600"
@@ -301,13 +515,13 @@ export default function ServiceProjectFilter({ categories }: ServiceProjectFilte
         className="text-2xl font-bold mb-6 flex items-center dark:text-white"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.3, duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       >
         <span className="h-5 w-5 bg-[#FF5D3A] mr-2 rounded"></span>
         {categories.find((cat) => cat.id === selectedCategory)?.name || ""} Designs
       </motion.h2>
 
-      {/* Project Grid with Loading State */}
+      {/* Project Grid */}
       <div className="w-full">
         {isLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -1,0 +1,7 @@
+These images need to be added:
+1. responsive-website.png - A screenshot of a responsive website design
+2. mobile-app.png - A screenshot of a mobile app interface
+3. 2d-animation.png - A thumbnail for 2D animation work
+4. motion-graphics.png - A thumbnail for motion graphics work
+5. video-editing.png - A thumbnail for video editing work
+6. 3d-animation.png - A thumbnail for 3D animation work 

@@ -17,6 +17,151 @@ import {
   fadeInLeft,
   fadeInRight,
 } from "@/components/animations"
+import { LayoutIcon, VideoIcon, PenToolIcon } from "lucide-react"
+
+// Types for projects
+interface ProjectBase {
+  id: number;
+  title: string;
+  description: string;
+  technologies: string[];
+  link: string;
+  featured: boolean;
+}
+
+interface VideoProject extends ProjectBase {
+  video: string;
+  image?: string; // Make image optional for video projects
+}
+
+interface ImageProject extends ProjectBase {
+  image: string;
+  video?: never;
+}
+
+type Project = VideoProject | ImageProject;
+
+interface ProjectCategory {
+  id: number;
+  title: string;
+  category: string;
+  items: Project[];
+}
+
+// Utility function to shuffle array
+function shuffleArray<T>(array: T[]): T[] {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+// Project data
+const projects: ProjectCategory[] = [
+  {
+    id: 1,
+    title: "UI/UX Designer",
+    category: "web-mobile",
+    items: [
+      {
+        id: 1,
+        title: "Responsive Website",
+        description: "Modern responsive website with seamless user experience",
+        image: "/images/thumbnails/web-ui/responsive-website.png",
+        technologies: ["Figma", "Adobe XD"],
+        link: "/services/web-and-mobile#web-ui",
+        featured: true
+      },
+      {
+        id: 2,
+        title: "Mobile App Design",
+        description: "User-friendly mobile app interface",
+        image: "/images/thumbnails/mobile-ui/mobile-app.png",
+        technologies: ["Figma", "Sketch"],
+        link: "/services/web-and-mobile#mobile-ui",
+        featured: true
+      }
+    ]
+  },
+  {
+    id: 2,
+    title: "Motion Designer",
+    category: "multimedia",
+    items: [
+      {
+        id: 1,
+        title: "Interface Animation",
+        description: "Engaging interface animations for enhanced user experience",
+        video: "/videos/thumbnails/interface-animation.mp4",
+        technologies: ["After Effects", "Premiere Pro"],
+        link: "/services/multimedia#animation",
+        featured: true
+      },
+      {
+        id: 2,
+        title: "Motion Graphics",
+        description: "Dynamic motion graphics for digital content",
+        video: "/videos/thumbnails/motion-graphics.mp4",
+        technologies: ["After Effects", "Premiere Pro"],
+        link: "/services/multimedia#motion-graphics",
+        featured: true
+      },
+      {
+        id: 3,
+        title: "Video Editing",
+        description: "Professional video editing and post-production",
+        video: "/videos/thumbnails/video-editing.mp4",
+        technologies: ["Premiere Pro", "After Effects"],
+        link: "/services/multimedia#video-editing",
+        featured: true
+      },
+      {
+        id: 4,
+        title: "Lottie Animation",
+        description: "Interactive Lottie animations for web and mobile apps",
+        video: "/videos/thumbnails/lottie-animation.mp4",
+        technologies: ["After Effects", "Bodymovin"],
+        link: "/services/multimedia#animation",
+        featured: true
+      }
+    ]
+  },
+  {
+    id: 3,
+    title: "Graphic Designer",
+    category: "graphic-design",
+    items: [
+      {
+        id: 1,
+        title: "Brand Identity",
+        description: "Complete brand identity package",
+        image: "/images/thumbnails/graphic-design/brand-identity.png",
+        technologies: ["Illustrator", "Photoshop"],
+        link: "/services/graphic-design#graphic-1",
+        featured: true
+      },
+      {
+        id: 2,
+        title: "Marketing Materials",
+        description: "Print and digital marketing collateral",
+        image: "/images/thumbnails/graphic-design/marketing-materials.png",
+        technologies: ["Illustrator", "Photoshop"],
+        link: "/services/graphic-design#graphic-2",
+        featured: true
+      }
+    ]
+  }
+];
+
+// Get featured projects and shuffle them
+const getFeaturedProjects = (): Project[] => {
+  const featured = projects.flatMap(category => 
+    category.items.filter(project => project.featured)
+  );
+  return shuffleArray(featured).slice(0, 6);
+};
 
 export default function Home() {
   return (
@@ -55,12 +200,15 @@ export default function Home() {
               >
                 <ImageDisplay
                   section="hero"
-                  fallbackSrc="/placeholder.svg?height=400&width=400"
+                  fallbackSrc="/images/hero/image-1.png"
                   alt="Designer workspace illustration"
                   width={400}
                   height={400}
                   className="object-contain mx-auto"
                   priority
+                  projectType="hero"
+                  projectName="hero"
+                  index={0}
                 />
               </div>
             </div>
@@ -123,12 +271,15 @@ export default function Home() {
               <div className="relative w-[320px] h-[320px] sm:w-[350px] sm:h-[350px] md:h-[450px] md:w-[450px]">
                 <ImageDisplay
                   section="about"
-                  fallbackSrc="/placeholder-user.jpg"
+                  fallbackSrc="/images/about/image-1.png"
                   alt="About Me"
                   width={450}
                   height={450}
                   className="object-contain w-full h-full"
                   priority
+                  projectType="about"
+                  projectName="about"
+                  index={0}
                 />
               </div>
             </div>
@@ -155,135 +306,104 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Section - Centered with consistent width */}
-      <section id="services" className="py-24 md:py-32 relative bg-[#F9F9F9] dark:bg-gray-900">
+      {/* Services Section */}
+      <section id="services" className="py-20 md:py-32">
         <div className="container mx-auto px-4">
-          <AnimateInView>
-            <div className="text-center mb-16 max-w-5xl mx-auto">
-              <div className="text-[#FF5D3A] font-medium mb-2">SERVICES</div>
-              <h2 className="text-3xl md:text-5xl font-bold mb-6 dark:text-white">WHAT I CAN DO</h2>
-              <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                I have 4 years of experience in Designing graphics and User Interfaces for Web and mobile apps.
-                Additionally, I create stunning multimedia content.
+          <StaggerContainer className="text-center max-w-3xl mx-auto mb-12 md:mb-20">
+            <StaggerItem>
+              <div className="text-[#FF5D3A] font-medium mb-3">SERVICES</div>
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 dark:text-white">WHAT I CAN DO</h2>
+              <p className="text-gray-600 dark:text-gray-300">
+                I have 4 years of experience in Designing graphics and User Interfaces for Web and mobile apps. Additionally, I create stunning multimedia content.
               </p>
-            </div>
-          </AnimateInView>
-
-          <StaggerContainer className="grid md:grid-cols-3 gap-2 justify-center max-w-5xl mx-auto">
-            <StaggerItem>
-              <ServiceCard
-                icon={
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF5D3A" strokeWidth="2">
-                    <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM3.6 9h16.8M3.6 15h16.8" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                }
-                title="Web/Mobile Design"
-                description="UX/UI designs, pixel-perfect designs and unique user experiences that enhance user satisfaction."
-                href="/services/web-and-mobile"
-                steps={[
-                  {
-                    number: "01",
-                    title: "Project Brief",
-                    description: "Discuss your requirements and project goals"
-                  },
-                  {
-                    number: "02",
-                    title: "Design Process",
-                    description: "Create wireframes and interactive prototypes"
-                  },
-                  {
-                    number: "03",
-                    title: "Final Delivery",
-                    description: "Deliver polished designs ready for development"
-                  }
-                ]}
-              />
-            </StaggerItem>
-            <StaggerItem>
-              <ServiceCard
-                icon={
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF5D3A" strokeWidth="2">
-                    <path d="M23 7l-7 5 7 5V7z M14 5H3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h11z" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                }
-                title="Multimedia Content"
-                description="Motion graphics, animations and premium video editing services for engaging content."
-                href="/services/multimedia"
-                steps={[
-                  {
-                    number: "01",
-                    title: "Content Planning",
-                    description: "Plan your multimedia content strategy"
-                  },
-                  {
-                    number: "02",
-                    title: "Production",
-                    description: "Create high-quality multimedia content"
-                  },
-                  {
-                    number: "03",
-                    title: "Review & Delivery",
-                    description: "Final review and content delivery"
-                  }
-                ]}
-              />
-            </StaggerItem>
-            <StaggerItem>
-              <ServiceCard
-                icon={
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF5D3A" strokeWidth="2">
-                    <path d="M15 8h.01M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m-6-4l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                }
-                title="Graphic Design"
-                description="Visual content that effectively communicates your brand message and identity."
-                href="/services/graphic-design"
-                steps={[
-                  {
-                    number: "01",
-                    title: "Brand Analysis",
-                    description: "Understand your brand and target audience"
-                  },
-                  {
-                    number: "02",
-                    title: "Design Creation",
-                    description: "Create compelling visual designs"
-                  },
-                  {
-                    number: "03",
-                    title: "Refinement",
-                    description: "Perfect the designs based on feedback"
-                  }
-                ]}
-              />
             </StaggerItem>
           </StaggerContainer>
 
-          <div className="flex justify-center mt-12"></div>
-        </div>
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <StaggerItem>
+              <ServiceCard
+                icon={<LayoutIcon className="w-8 h-8 text-[#FF5D3A]" />}
+                title="Web/Mobile Design"
+                description="UI/UX designs, pixel perfect designs and unique user experiences that enhance user satisfaction."
+                href="/services/web-and-mobile"
+                buttonText="View Portfolio"
+              />
+            </StaggerItem>
 
-        {/* Decorative elements */}
-        <div className="absolute right-0 bottom-40 h-20 w-20 bg-[#FFE8E3] dark:bg-gray-800 rounded-full -z-10"></div>
+            <StaggerItem>
+              <ServiceCard
+                icon={<VideoIcon className="w-8 h-8 text-[#FF5D3A]" />}
+                title="Multimedia Content"
+                description="Motion graphics, Lottie animations and premium video editing Services. I create engaging and dynamic visual content that captures attention and effectively communicates your message."
+                href="/services/multimedia"
+                buttonText="View Portfolio"
+              />
+            </StaggerItem>
+
+            <StaggerItem>
+              <ServiceCard
+                icon={<PenToolIcon className="w-8 h-8 text-[#FF5D3A]" />}
+                title="Graphic Design"
+                description="Visual content that effectively communicates your brand message and identity."
+                href="/services/graphic-design"
+                buttonText="View Portfolio"
+              />
+            </StaggerItem>
+          </StaggerContainer>
+        </div>
       </section>
 
-      {/* Portfolio Section - Centered with consistent width */}
-      <section id="projects" className="container mx-auto px-4 py-24 md:py-32 relative">
-        <AnimateInView>
-          <div className="mb-12 max-w-5xl mx-auto">
-            <div className="text-[#FF5D3A] font-medium mb-2">PORTFOLIO</div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-white">RECENT PROJECTS</h2>
+      {/* Featured Projects Section */}
+      <section id="featured-projects" className="py-20 bg-gray-50 dark:bg-gray-900">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Random Projects</h2>
+            <p className="text-gray-600 dark:text-gray-400">A diverse selection of projects showcasing various skills and expertise</p>
           </div>
-        </AnimateInView>
-
-        <AnimateInView delay={0.2}>
-          <div className="max-w-5xl mx-auto">
-            {/* Add this component to replace the single row of projects */}
-            <RecentProjects />
+          
+          <div className="max-w-[80%] mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {getFeaturedProjects().map((project, index) => (
+                <a 
+                  href={project.link}
+                  key={`${project.title}-${index}`} 
+                  className="group bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer relative flex flex-col"
+                >
+                  <div className="relative h-52">
+                    {project.video ? (
+                      <video 
+                        src={project.video}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        controls
+                      />
+                    ) : (
+                      <img 
+                        src={project.image} 
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    )}
+                  </div>
+                  <div className="p-7 flex-1 flex flex-col">
+                    <h4 className="text-xl font-semibold mb-3 group-hover:text-[#FF5D3A] transition-colors">{project.title}</h4>
+                    <p className="text-gray-600 dark:text-gray-400 mb-5">{project.description}</p>
+                    <div className="flex flex-wrap gap-2 mt-auto">
+                      {project.technologies.map((tech, techIndex) => (
+                        <span 
+                          key={techIndex}
+                          className="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#FF5D3A] rounded-lg transition-colors pointer-events-none"></div>
+                </a>
+              ))}
+            </div>
           </div>
-        </AnimateInView>
-
-        {/* Decorative elements */}
-        <div className="absolute left-10 top-40 h-10 w-10 bg-[#FFE8E3] dark:bg-gray-800 rounded-full -z-10"></div>
+        </div>
       </section>
 
       {/* Testimonials Section - Centered with consistent width */}

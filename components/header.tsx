@@ -28,41 +28,53 @@ const categoryToServicePage = {
 
 // Project data mapping for determining the category
 const projectCategories = {
-  "mobile-app-design": "UI/UX Design",
-  "e-commerce-landing-page": "Web Design",
-  "dashboard-ui": "UI/UX Design",
-  "restaurant-branding": "Branding",
-  "tech-startup-branding": "Branding",
-  "fashion-brand-identity": "Branding",
-  "motion-graphics": "Multimedia",
-  "video-editing": "Video Editing",
-  "3d-animation": "Animation",
-  "e-commerce-website": "Web UI Design",
-  "portfolio-website": "Web UI Design",
-  "landing-page": "Web UI Design",
-  "blog-platform": "Web UI Design",
-  "admin-panel": "Web UI Design",
-  "fitness-app": "Mobile UI Design",
-  "food-delivery-app": "Mobile UI Design",
-  "social-media-app": "Mobile UI Design",
-  "travel-app": "Mobile UI Design",
-  "e-commerce-app": "Mobile UI Design",
-  "music-player-app": "Mobile UI Design",
-  "product-animation": "Animation",
-  "logo-animation": "Animation",
-  "character-animation": "Animation",
+  // Web UI Projects
+  "academic-stars": "Web UI Design",
+  "bloom": "Web UI Design",
+  "brandbridge": "Web UI Design",
+  "comfort-corner": "Web UI Design",
+  "e-commerce-tech-nest": "Web UI Design",
+  "learn-sphere": "Web UI Design",
+  "marketit": "Web UI Design",
+  "shadow-nexus-gaming": "Web UI Design",
+  "upward": "Web UI Design",
+
+  // Mobile UI Projects
+  "blocksite": "Mobile UI Design",
+  "call-announcer": "Mobile UI Design",
+  "call-recorder": "Mobile UI Design",
+  "carteasy": "Mobile UI Design",
+  "meal-mate": "Mobile UI Design",
+  "voice-changer": "Mobile UI Design",
+
+  // Branding Projects
+  "crunch-brand": "Branding",
+  "energizer-sustainable": "Branding",
+  "zenith-architecture": "Branding",
+
+  // Print Design Projects
+  "crunch-brand-print": "Print Design",
+  "energizer-sustainable-print": "Print Design",
+  "zenith-architecture-print": "Print Design",
+
+  // Social Media Projects
+  "fashion-social": "Social Media Design",
+  "food-social": "Social Media Design",
+
+  // Animation Projects
+  "bloom-animation": "Lottie Animation/Motion Graphics",
+  "brand-bridge-animation": "Lottie Animation/Motion Graphics",
+  "fitness-app-animation": "Lottie Animation/Motion Graphics",
+  "cartease-animation": "Lottie Animation/Motion Graphics",
+  "marwen-animation": "Lottie Animation/Motion Graphics",
+  "mobile-animation": "Lottie Animation/Motion Graphics",
+  "upward-animation": "Lottie Animation/Motion Graphics",
+  "shadow-nexus-animation": "Lottie Animation/Motion Graphics",
+  "voice-changer-animation": "Lottie Animation/Motion Graphics",
+
+  // Video Editing Projects
   "corporate-video": "Video Editing",
-  "product-showcase": "Video Editing",
-  "event-highlights": "Video Editing",
-  "explainer-video": "Motion Graphics",
-  "infographic-animation": "Motion Graphics",
-  "ui-motion": "Motion Graphics",
-  "instagram-posts": "Social Media",
-  "facebook-ads": "Social Media",
-  "twitter-graphics": "Social Media",
-  "business-cards": "Print Design",
-  brochures: "Print Design",
-  posters: "Print Design",
+  "product-video": "Video Editing"
 }
 
 export default function Header() {
@@ -161,7 +173,7 @@ export default function Header() {
   }
 
   // Determine the appropriate projects link
-  let projectsLink = "/#projects"
+  let projectsLink = "/#featured-projects"
 
   if (isServicePage) {
     // If we're on a service page, we'll handle the scrolling with JavaScript
@@ -261,7 +273,7 @@ export default function Header() {
             <motion.div variants={itemVariants}>
               {isHomePage ? (
                 <button
-                  onClick={(e) => scrollToSection("projects", e)}
+                  onClick={(e) => scrollToSection("featured-projects", e)}
                   className="text-sm font-medium hover:text-[#FF5D3A] transition-colors dark:text-gray-200 dark:hover:text-[#FF5D3A] bg-transparent border-none p-0 cursor-pointer"
                 >
                   Projects
@@ -421,7 +433,7 @@ export default function Header() {
                 <button
                   onClick={(e) => {
                     setMobileMenuOpen(false)
-                    scrollToSection("projects", e)
+                    scrollToSection("featured-projects", e)
                   }}
                   className="text-xl font-medium hover:text-[#FF5D3A] transition-colors dark:text-gray-200 dark:hover:text-[#FF5D3A] bg-transparent border-none p-0 cursor-pointer"
                 >

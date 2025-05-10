@@ -56,23 +56,35 @@ const projectsData = {
   ],
   multimedia: [
     {
-      title: "Motion Graphics",
-      category: "Multimedia",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "motion-graphics",
+      title: "Brand Bridge",
+      category: "Lottie Animation/Motion Graphics",
+      image: "/images/projects/multimedia/lottie-motion-graphic/brand-bridge/image-1.png",
+      slug: "brand-bridge-animation",
+      isMultimedia: true,
+      projectType: "multimedia/lottie-motion-graphic",
+      projectName: "brand-bridge",
+      videoUrl: "/videos/projects/brand-bridge/video.mp4"
     },
     {
-      title: "Video Editing",
-      category: "Multimedia",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "video-editing",
+      title: "CartEase Animation",
+      category: "Lottie Animation/Motion Graphics",
+      image: "/images/projects/multimedia/lottie-motion-graphic/cartease/image-1.png",
+      slug: "cartease-animation",
+      isMultimedia: true,
+      projectType: "multimedia/lottie-motion-graphic",
+      projectName: "cartease",
+      videoUrl: "/videos/projects/cartease/video.mp4"
     },
     {
-      title: "3D Animation",
-      category: "Multimedia",
-      image: "/placeholder.svg?height=300&width=400",
-      slug: "3d-animation",
-    },
+      title: "Shadow Nexus Animation",
+      category: "Lottie Animation/Motion Graphics",
+      image: "/images/projects/multimedia/lottie-motion-graphic/shadow-nexus/image-1.png",
+      slug: "shadow-nexus-animation",
+      isMultimedia: true,
+      projectType: "multimedia/lottie-motion-graphic",
+      projectName: "shadow-nexus",
+      videoUrl: "/videos/projects/shadow-nexus/video.mp4"
+    }
   ],
 }
 

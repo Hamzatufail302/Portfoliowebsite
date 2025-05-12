@@ -10,28 +10,24 @@ import { motion, AnimatePresence } from "framer-motion"
 const testimonials = [
   {
     quote:
-      "I have been working with this designer for years and their work is simply outstanding. The designs are clean, modern and professional.",
-    author: "Helen Ngoc R.",
+      "Hamza's UI/UX and multimedia design skills have significantly elevated our marketing campaigns. His attention to detail and modern design approach perfectly aligns with our brand vision.",
+    author: "99 Marketing Studio",
     imageSection: "testimonials",
+    projectType: "testimonials",
+    projectName: "marketing-studio",
     imageIndex: 0,
     rating: 5,
   },
   {
     quote:
-      "Working with this designer has been a pleasure. They understood my requirements perfectly and delivered a design that exceeded my expectations.",
-    author: "John Smith",
+      "Working with Hamza on our app interfaces has been exceptional. His understanding of user experience and ability to create engaging animations has made our applications stand out in the market.",
+    author: "Crew App Studio",
     imageSection: "testimonials",
+    projectType: "testimonials",
+    projectName: "app-studio",
     imageIndex: 1,
     rating: 5,
-  },
-  {
-    quote:
-      "The designer's ability to translate my ideas into visual designs is remarkable. The process was smooth, and the final product was exactly what I needed.",
-    author: "Sarah Johnson",
-    imageSection: "testimonials",
-    imageIndex: 2,
-    rating: 5,
-  },
+  }
 ]
 
 export default function TestimonialSlider() {
@@ -69,6 +65,8 @@ export default function TestimonialSlider() {
               <div className="w-[40px] h-[40px] rounded-full overflow-hidden">
                 <ImageDisplay
                   section={currentTestimonial.imageSection}
+                  projectType={currentTestimonial.projectType}
+                  projectName={currentTestimonial.projectName}
                   index={currentTestimonial.imageIndex}
                   fallbackSrc="/placeholder.svg?height=40&width=40"
                   alt={currentTestimonial.author}

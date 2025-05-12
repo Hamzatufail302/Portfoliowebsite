@@ -177,13 +177,13 @@ export default function Home() {
             <h1 className="text-4xl md:text-5xl font-bold mb-4 dark:text-white">
               I'M <span className="text-[#FF5D3A]">HAMZA</span>
               <br />
-              GRAPHIC & MULTIMEDIA
+              UI/UX & MULTIMEDIA
               <br />
               DESIGNER
             </h1>
             <p className="text-gray-600 dark:text-gray-300 max-w-md mb-6">
-              My aim is to create better user interfaces, graphics and multimedia content in modern graphics, Lottie
-              animations and web colors.
+              My aim is to create better user interfaces, multimedia content and modern graphics, Lottie
+              animations and marketing materials.
             </p>
             <div className="mt-8">
               <SmoothScrollButton targetId="contact" className="rounded-full px-8 py-6">
@@ -289,8 +289,8 @@ export default function Home() {
             <div className="text-[#FF5D3A] font-medium mb-1">ABOUT ME</div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4 dark:text-white">WHO I AM</h2>
             <p className="text-gray-600 dark:text-gray-300 mb-6 md:mb-8 text-sm sm:text-base">
-              I am a Graphic and Multimedia designer who loves creating pixel-perfect designs, unique user interfaces
-              and producing Multimedia content. I have a passion for creating beautiful designs and I also take pride in
+              I am a UI/UX and Multimedia designer who loves creating pixel-perfect designs, unique user interfaces
+              and producing Multimedia content. I have a passion for bringing creative ideas to life and I also take pride in
               providing exceptional customer service while delivering projects that exceed my clients' expectations
               every single time.
             </p>
@@ -314,7 +314,7 @@ export default function Home() {
               <div className="text-[#FF5D3A] font-medium mb-3">SERVICES</div>
               <h2 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 dark:text-white">WHAT I CAN DO</h2>
               <p className="text-gray-600 dark:text-gray-300">
-                I have 4 years of experience in Designing graphics and User Interfaces for Web and mobile apps. Additionally, I create stunning multimedia content.
+                I have 4 years of experience in creating user interfaces and multimedia content. Additionally, I create stunning graphics.
               </p>
             </StaggerItem>
           </StaggerContainer>
@@ -323,10 +323,10 @@ export default function Home() {
             <StaggerItem>
               <ServiceCard
                 icon={<LayoutIcon className="w-8 h-8 text-[#FF5D3A]" />}
-                title="Web/Mobile Design"
+                title="Web/Mobile UI/UX"
                 description="UI/UX designs, pixel perfect designs and unique user experiences that enhance user satisfaction."
                 href="/services/web-and-mobile"
-                buttonText="View Portfolio"
+                buttonText="View Projects"
               />
             </StaggerItem>
 
@@ -336,7 +336,7 @@ export default function Home() {
                 title="Multimedia Content"
                 description="Motion graphics, Lottie animations and premium video editing Services. I create engaging and dynamic visual content that captures attention and effectively communicates your message."
                 href="/services/multimedia"
-                buttonText="View Portfolio"
+                buttonText="View Projects"
               />
             </StaggerItem>
 
@@ -346,7 +346,7 @@ export default function Home() {
                 title="Graphic Design"
                 description="Visual content that effectively communicates your brand message and identity."
                 href="/services/graphic-design"
-                buttonText="View Portfolio"
+                buttonText="View Projects"
               />
             </StaggerItem>
           </StaggerContainer>
@@ -357,8 +357,8 @@ export default function Home() {
       <section id="featured-projects" className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Random Projects</h2>
-            <p className="text-gray-600 dark:text-gray-400">A diverse selection of projects showcasing various skills and expertise</p>
+            <h2 className="text-3xl font-bold mb-4">Random Picks</h2>
+            <p className="text-gray-600 dark:text-gray-400">A selection of randomly picked projects from my portfolio showcasing different aspects of my work</p>
           </div>
           
           <div className="max-w-[80%] mx-auto">

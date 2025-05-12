@@ -7,8 +7,8 @@ import ScrollToTop from "@/components/scroll-to-top"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "Portfolio Website",
-  description: "A professional portfolio website for a designer",
+  title: "CreativeHamza",
+  description: "A professional design portfolio by CreativeHamza",
     generator: 'v0.dev'
 }
 
@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="bg-white dark:bg-gray-950">
+      <body className={`${inter.className} mx-0 sm:mx-2 md:mx-0`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <ScrollToTop />
           {children}

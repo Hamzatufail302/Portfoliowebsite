@@ -153,7 +153,7 @@ export default function Footer() {
               className="flex justify-between items-center pt-8 border-t border-gray-200 dark:border-gray-700"
             >
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                ©2023 Portfolio Website - All Rights Reserved
+                ©2024 CreativeHamza - All Rights Reserved
               </p>
               <motion.div whileHover={{ y: -5 }} transition={{ type: "spring", stiffness: 400 }}>
                 <Button

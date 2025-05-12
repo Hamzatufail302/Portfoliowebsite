@@ -58,7 +58,7 @@ interface AnimateInViewProps {
   delay?: number
 }
 
-export function AnimateInView({ children, variants = fadeInUp, className = "", delay = 0 }: AnimateInViewProps) {
+export const AnimateInView = ({ children, variants = fadeInUp, className = "", delay = 0 }: AnimateInViewProps) => {
   const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
@@ -84,7 +84,7 @@ export function AnimateInView({ children, variants = fadeInUp, className = "", d
 }
 
 // Staggered container for multiple elements
-export function StaggerContainer({ children, className = "" }: { children: ReactNode; className?: string }) {
+export const StaggerContainer = ({ children, className = "" }: { children: ReactNode; className?: string }) => {
   const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
@@ -109,7 +109,7 @@ export function StaggerContainer({ children, className = "" }: { children: React
 }
 
 // Individual staggered item
-export function StaggerItem({ children, variants = fadeInUp, className = "" }: AnimateInViewProps) {
+export const StaggerItem = ({ children, variants = fadeInUp, className = "" }: AnimateInViewProps) => {
   return (
     <motion.div variants={variants} className={className}>
       {children}

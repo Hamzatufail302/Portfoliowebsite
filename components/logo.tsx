@@ -20,17 +20,17 @@ export default function Logo() {
       {logoSrc ? (
         <Image
           src={logoSrc}
-          alt="Portfolio Logo"
-          width={32}
-          height={32}
-          className="h-8 w-8 object-contain"
+          width={40}
+          height={40}
+          className="rounded-lg"
+          alt="CreativeHamza Logo"
         />
       ) : (
         <div className="h-8 w-8 bg-black dark:bg-white rounded-md flex items-center justify-center">
           <span className="text-white dark:text-black font-bold text-lg">P</span>
         </div>
       )}
-      <span className="font-semibold text-lg dark:text-white">Portfolio</span>
+      <span className="font-semibold text-lg dark:text-white">CreativeHamza</span>
     </div>
   )
 }

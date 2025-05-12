@@ -32,7 +32,7 @@ export default function ContactForm() {
     try {
       // This is a simple way to send an email using a mailto link
       // In a production environment, you would use a server-side solution
-      const mailtoLink = `mailto:hamzatufail217@gmail.com?subject=Contact from Portfolio Website&body=Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0AMessage: ${formData.message}`
+      const mailtoLink = `mailto:hamzatufail217@gmail.com?subject=Contact from CreativeHamza&body=Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0AMessage: ${formData.message}`
 
       window.open(mailtoLink, "_blank")
 

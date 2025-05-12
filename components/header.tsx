@@ -1,14 +1,14 @@
 "use client"
 
 import type React from "react"
-import { Suspense } from "react"
-import { motion } from "framer-motion"
+import { Suspense, useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname, useSearchParams } from "next/navigation"
 import Logo from "@/components/logo"
-import { Button } from "@/components/ui/button"
-import { Moon, Sun } from "lucide-react"
+import { Menu, Moon, Sun, X } from "lucide-react"
 import { useTheme } from "next-themes"
+import { Button } from "@/components/ui/button"
+import { motion } from "framer-motion"
 
 // Map categories to service pages
 const categoryToServicePage = {
@@ -77,53 +77,166 @@ const projectCategories = {
 }
 
 // Separate the content that uses useSearchParams
-function HeaderInner() {
+function HeaderContent() {
+  const [isScrolled, setIsScrolled] = useState(false)
   const pathname = usePathname()
   const searchParams = useSearchParams()
-  const fromService = searchParams.get("from") === "service"
-  const section = searchParams.get("section") || ""
   const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  // Check page types
+  const isHomePage = pathname === "/"
+  const isProjectPage = pathname.startsWith("/projects/")
+  const isServicePage = pathname.startsWith("/services/")
+  const fromService = searchParams.get("from") === "service"
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : ""
+    return () => { document.body.style.overflow = "" }
+  }, [mobileMenuOpen])
+
+  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark")
+  const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen)
+
+  const scrollToSection = (sectionId: string, e: React.MouseEvent) => {
+    e.preventDefault()
+    const section = document.getElementById(sectionId)
+    if (section) section.scrollIntoView({ behavior: "smooth" })
+  }
+
+  const scrollToTop = (e: React.MouseEvent) => {
+    e.preventDefault()
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md dark:bg-gray-950/80">
-      <nav className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Link href="/" className="flex items-center space-x-2">
-              <Logo />
-            </Link>
-          </motion.div>
+    <>
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-white/90 backdrop-blur-sm shadow-sm dark:bg-gray-900/90" : "bg-white/80 backdrop-blur-md dark:bg-gray-950/80"
+      }`}>
+        <nav className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              {isHomePage ? (
+                <button onClick={scrollToTop} className="flex items-center gap-2">
+                  <Logo />
+                </button>
+              ) : (
+                <Link href="/">
+                  <Logo />
+                </Link>
+              )}
+            </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex items-center space-x-6"
-          >
-            {pathname.startsWith("/projects/") && fromService ? (
+            <nav className="hidden md:flex items-center gap-8">
               <Link
-                href={`/#${section}`}
-                className="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                href={isHomePage ? "#" : "/"}
+                onClick={isHomePage ? scrollToTop : undefined}
+                className="text-sm font-medium hover:text-[#FF5D3A] transition-colors dark:text-gray-200 dark:hover:text-[#FF5D3A]"
               >
-                ← Back to Services
+                Home
               </Link>
-            ) : null}
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="rounded-full border-[#FF5D3A] text-[#FF5D3A] hover:bg-[#FF5D3A]/5 hover:text-[#FF5D3A] hover:border-[#FF5D3A] dark:text-[#FF5D3A] dark:border-[#FF5D3A]"
-            >
-              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              <Link
+                href="/#about"
+                onClick={isHomePage ? (e) => scrollToSection("about", e) : undefined}
+                className="text-sm font-medium hover:text-[#FF5D3A] transition-colors dark:text-gray-200 dark:hover:text-[#FF5D3A]"
+              >
+                About
+              </Link>
+              <Link
+                href="/#services"
+                onClick={isHomePage ? (e) => scrollToSection("services", e) : undefined}
+                className="text-sm font-medium hover:text-[#FF5D3A] transition-colors dark:text-gray-200 dark:hover:text-[#FF5D3A]"
+              >
+                Services
+              </Link>
+              <Link
+                href="/#featured-projects"
+                onClick={isHomePage ? (e) => scrollToSection("featured-projects", e) : undefined}
+                className="text-sm font-medium hover:text-[#FF5D3A] transition-colors dark:text-gray-200 dark:hover:text-[#FF5D3A]"
+              >
+                Projects
+              </Link>
+            </nav>
+
+            <div className="flex items-center gap-4">
+              {mounted && (
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={toggleTheme}
+                  className="rounded-full border-[#FF5D3A] text-[#FF5D3A] hover:bg-[#FF5D3A]/5 hover:text-[#FF5D3A] hover:border-[#FF5D3A] dark:text-[#FF5D3A] dark:border-[#FF5D3A]"
+                >
+                  {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                </Button>
+              )}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleMobileMenu}
+                className="md:hidden text-gray-700 dark:text-gray-200"
+              >
+                <Menu className="h-6 w-6" />
+              </Button>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 md:hidden bg-white dark:bg-gray-900">
+          <div className="p-4 flex justify-between items-center">
+            <Logo />
+            <Button variant="ghost" size="icon" onClick={toggleMobileMenu}>
+              <X className="h-6 w-6" />
             </Button>
-          </motion.div>
+          </div>
+          <nav className="p-4 flex flex-col gap-4">
+            <Link
+              href={isHomePage ? "#" : "/"}
+              onClick={(e) => { toggleMobileMenu(); isHomePage && scrollToTop(e); }}
+              className="text-lg font-medium"
+            >
+              Home
+            </Link>
+            <Link
+              href="/#about"
+              onClick={(e) => { toggleMobileMenu(); isHomePage && scrollToSection("about", e); }}
+              className="text-lg font-medium"
+            >
+              About
+            </Link>
+            <Link
+              href="/#services"
+              onClick={(e) => { toggleMobileMenu(); isHomePage && scrollToSection("services", e); }}
+              className="text-lg font-medium"
+            >
+              Services
+            </Link>
+            <Link
+              href="/#featured-projects"
+              onClick={(e) => { toggleMobileMenu(); isHomePage && scrollToSection("featured-projects", e); }}
+              className="text-lg font-medium"
+            >
+              Projects
+            </Link>
+          </nav>
         </div>
-      </nav>
-    </header>
+      )}
+    </>
   )
 }
 
@@ -140,7 +253,7 @@ export default function Header() {
         </nav>
       </header>
     }>
-      <HeaderInner />
+      <HeaderContent />
     </Suspense>
   )
 }

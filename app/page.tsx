@@ -6,7 +6,6 @@ import ImageDisplay from "@/components/image-display"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import TestimonialSlider from "@/components/testimonial-slider"
-import ContactForm from "@/components/contact-form"
 import RecentProjects from "@/components/recent-projects"
 import SmoothScrollButton from "@/components/smooth-scroll-button"
 import {
@@ -231,7 +230,7 @@ export default function Home() {
                     <div className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
                       <Mail className="h-5 w-5 text-[#FF5D3A]" />
                     </div>
-                    <span className="text-sm dark:text-gray-300">hamzatufail217@gmail.com</span>
+                    <span className="text-sm dark:text-gray-300">hamzatufail215@gmail.com</span>
                   </div>
                 </div>
               </div>
@@ -250,7 +249,7 @@ export default function Home() {
                     <div className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
                       <Mail className="h-5 w-5 text-[#FF5D3A]" />
                     </div>
-                    <span className="text-sm dark:text-gray-300">hamzatufail217@gmail.com</span>
+                    <span className="text-sm dark:text-gray-300">hamzatufail215@gmail.com</span>
                   </div>
                 </div>
               </div>
@@ -435,20 +434,21 @@ export default function Home() {
 
       {/* Contact Section - Centered with consistent width */}
       <section id="contact" className="container mx-auto px-4 py-24 md:py-32 relative">
-        <div className="grid md:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
-          <AnimateInView variants={fadeInLeft}>
+        <div className="max-w-3xl mx-auto text-center">
+          <AnimateInView variants={fadeInUp}>
             <div className="pt-4">
               <div className="text-[#FF5D3A] font-medium mb-2">CONTACT ME</div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-white">LET'S TALK</h2>
-              <p className="text-gray-600 dark:text-gray-300">
-                Feel free to reach out if you're looking for a designer, have a question, or just want to connect. I'm
-                currently available for freelance work and open to discussing new projects or opportunities.
+              <h2 className="text-3xl md:text-4xl font-bold mb-3 dark:text-white">LET'S TALK</h2>
+              <p className="text-gray-600 dark:text-gray-300 mb-6 text-base">
+                If you have an exciting project in mind or want to collaborate on something creative, I'd love to hear from you. 
+                Let's work together to bring your ideas to life.
               </p>
+              <div className="mt-6">
+                <p className="text-xl md:text-2xl font-bold text-[#FF5D3A] dark:text-[#FF5D3A]">
+                  hamzatufail215@gmail.com
+                </p>
+              </div>
             </div>
-          </AnimateInView>
-
-          <AnimateInView variants={fadeInRight}>
-            <ContactForm />
           </AnimateInView>
         </div>
 

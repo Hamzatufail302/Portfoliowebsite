@@ -12,30 +12,21 @@ export async function uploadImage(formData: FormData) {
   }
 
   try {
-    // Check if we have the token
     if (!process.env.BLOB_READ_WRITE_TOKEN) {
       console.error("BLOB_READ_WRITE_TOKEN is not defined")
       return {
-        error:
-          "Storage configuration is missing. Please check your environment variables or use the local storage option instead.",
+        error: "Storage configuration is missing. Please check your environment variables."
       }
     }
 
-    // Create a unique path for the image based on section and timestamp
     const filename = `${section}/${Date.now()}-${file.name.replace(/\s+/g, "-")}`
-
-    console.log(`Attempting to upload ${filename} to Vercel Blob...`)
 
     try {
       const blob = await put(filename, file, {
         access: "public",
       })
 
-      console.log(`Upload successful: ${blob.url}`)
-
-      // Revalidate the path to update the UI
       revalidatePath("/")
-      revalidatePath("/admin")
 
       return {
         success: true,
@@ -45,13 +36,13 @@ export async function uploadImage(formData: FormData) {
     } catch (blobError) {
       console.error("Blob upload error:", blobError)
       return {
-        error: `Vercel Blob error: ${blobError instanceof Error ? blobError.message : "Unknown error"}. Please use the local storage option instead.`,
+        error: `Upload error: ${blobError instanceof Error ? blobError.message : "Unknown error"}`
       }
     }
   } catch (error) {
     console.error("Error in upload action:", error)
     return {
-      error: `Failed to upload image: ${error instanceof Error ? error.message : "Unknown error"}. Try using the local storage option.`,
+      error: `Failed to upload image: ${error instanceof Error ? error.message : "Unknown error"}`
     }
   }
 }

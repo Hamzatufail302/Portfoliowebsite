@@ -75,8 +75,8 @@ export default function ProjectContent({ project }: ProjectContentProps) {
                   <div key={idx} className="w-full overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800">
                     <ImageDisplay
                       section={project.imageSection}
-                      projectType={project.projectType || ''}
-                      projectName={project.projectName || ''}
+                      projectType={project.projectType}
+                      projectName={project.projectName}
                       index={imageIndex}
                       fallbackSrc={`/placeholder.svg?height=800&width=1200&text=${project.title}`}
                       alt={`${project.title} - Image ${idx + 1}`}

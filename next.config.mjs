@@ -21,7 +21,6 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
-    domains: ['localhost'],
   },
   experimental: {
     webpackBuildWorker: true,

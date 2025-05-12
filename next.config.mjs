@@ -20,13 +20,9 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-    ],
-    unoptimized: false,
+    domains: ['**'],
+    unoptimized: true,
+    minimumCacheTTL: 60,
   },
   output: 'standalone',
   experimental: {

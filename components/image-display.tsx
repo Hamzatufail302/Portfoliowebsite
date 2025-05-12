@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image"
 import { useState, useEffect, useCallback, useMemo, useRef } from "react"
-import { getCloudinaryVideoUrl } from "@/utils/cloudinary"
+import { getCloudinaryVideoUrl, getCloudinaryUrl } from "@/utils/cloudinary"
 
 interface ImageDisplayProps {
   section: string
@@ -36,29 +36,16 @@ export default function ImageDisplay({
 }: ImageDisplayProps) {
   // Construct the image path based on the project type and index
   const getImagePath = () => {
-    if (projectType === "graphic-design/print") {
-      // Map indices to specific print items
-      // Crunch Brand images
-      if (index === 0) return `/images/projects/graphic-design/print/crunch-brand/image-1.png`
-      if (index === 1) return `/images/projects/graphic-design/print/crunch-brand/image-2.png`
-      // Energizer Sustainable images
-      if (index === 2) return `/images/projects/graphic-design/print/energizer-sustainable/image-1.png`
-      if (index === 3) return `/images/projects/graphic-design/print/energizer-sustainable/image-2.png`
-      // Zenith Architecture images
-      if (index === 4) return `/images/projects/graphic-design/print/zenith-architecture/image-1.png`
-      if (index === 5) return `/images/projects/graphic-design/print/zenith-architecture/image-6.png`
-      return `/images/projects/graphic-design/print/image-${index + 1}.png`
-    }
     // For Upward project, use specific path
     if (projectName === "upward") {
-      return `image-${index + 1}`; // Just return the base filename for Cloudinary
+      return `image-${index}`; // Use index directly since we're using one-based indices
     }
     // For hero and about sections, use direct path
-    if (projectType === "hero" || projectType === "about") {
-      return `/images/${projectType}/image-${index + 1}.png`
+    if (projectType === "hero" || projectType === "about" || projectType === "testimonials") {
+      return `/images/${projectType === "testimonials" ? "projects/testimonials" : projectType}/image-${index + 1}.png`
     }
-    // For all other project types
-    return `/images/projects/${projectType}/${projectName}/image-${index + 1}.png`
+    // For all other project types (including print design)
+    return `/images/projects/${projectType}/${projectName}/image-${index}.png`
   }
 
   const [imageSrc, setImageSrc] = useState(() => {

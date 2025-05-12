@@ -12,8 +12,8 @@ const projectsData = {
     projectType: "web-mobile/web-ui",
     projectName: "academic-stars",
     imageSection: "projects",
-    imageIndex: 0,
-    images: [0, 1, 2, 3, 4, 5, 6, 7]
+    imageIndex: 1,
+    images: [1, 2, 3, 4, 5, 6, 7, 8]
   },
   "bloom": {
     title: "Bloom Website",
@@ -22,8 +22,8 @@ const projectsData = {
     projectType: "web-mobile/web-ui",
     projectName: "bloom",
     imageSection: "projects",
-    imageIndex: 0,
-    images: [0, 1, 2, 3, 4, 5]
+    imageIndex: 1,
+    images: [1, 2, 3, 4, 5, 6]
   },
   "brandbridge": {
     title: "BrandBridge Website",
@@ -32,8 +32,8 @@ const projectsData = {
     projectType: "web-mobile/web-ui",
     projectName: "brandbridge",
     imageSection: "projects",
-    imageIndex: 0,
-    images: [0, 1, 2]
+    imageIndex: 1,
+    images: [1, 2, 3]
   },
   "comfort-corner": {
     title: "Comfort Corner Website",
@@ -42,8 +42,8 @@ const projectsData = {
     projectType: "web-mobile/web-ui",
     projectName: "comfort-corner",
     imageSection: "projects",
-    imageIndex: 0,
-    images: [0, 1, 2]
+    imageIndex: 1,
+    images: [1, 2, 3]
   },
   "e-commerce-tech-nest": {
     title: "E-commerce Tech Nest",
@@ -52,8 +52,8 @@ const projectsData = {
     projectType: "web-mobile/web-ui",
     projectName: "e-commerce-tech-nest",
     imageSection: "projects",
-    imageIndex: 0,
-    images: [0, 1, 2]
+    imageIndex: 1,
+    images: [1, 2, 3]
   },
   "learn-sphere": {
     title: "Learn Sphere Website",
@@ -62,8 +62,8 @@ const projectsData = {
     projectType: "web-mobile/web-ui",
     projectName: "learn-sphere",
     imageSection: "projects",
-    imageIndex: 0,
-    images: [0, 1, 2]
+    imageIndex: 1,
+    images: [1, 2, 3]
   },
   "marketit": {
     title: "MarketIT Website",
@@ -72,8 +72,8 @@ const projectsData = {
     projectType: "web-mobile/web-ui",
     projectName: "marketit",
     imageSection: "projects",
-    imageIndex: 0,
-    images: [0, 1, 2]
+    imageIndex: 1,
+    images: [1, 2, 3]
   },
   "shadow-nexus-gaming": {
     title: "Shadow Nexus Gaming",
@@ -82,8 +82,8 @@ const projectsData = {
     projectType: "web-mobile/web-ui",
     projectName: "shadow-nexus-gaming",
     imageSection: "projects",
-    imageIndex: 0,
-    images: [0, 1, 2, 3, 4, 5, 6, 7]
+    imageIndex: 1,
+    images: [1, 2, 3, 4, 5, 6, 7, 8]
   },
   "upward": {
     title: "Upward Website",
@@ -92,8 +92,8 @@ const projectsData = {
     projectType: "web-mobile/web-ui",
     projectName: "upward",
     imageSection: "projects",
-    imageIndex: 0,
-    images: [0, 1, 2, 3, 4, 5, 6]
+    imageIndex: 1,
+    images: [1, 2, 3, 4, 5, 6, 7]
   },
 
   // Mobile UI Projects
@@ -104,8 +104,8 @@ const projectsData = {
     projectType: "web-mobile/mobile-ui",
     projectName: "blocksite",
     imageSection: "projects",
-    imageIndex: 0,
-    images: [0, 1, 2, 3, 4, 5, 6]
+    imageIndex: 1,
+    images: [1, 2, 3, 4, 5, 6, 7]
   },
   "call-announcer": {
     title: "Call Announcer",
@@ -114,8 +114,8 @@ const projectsData = {
     projectType: "web-mobile/mobile-ui",
     projectName: "call-announcer",
     imageSection: "projects",
-    imageIndex: 0,
-    images: [0, 1, 2, 3, 4, 5]
+    imageIndex: 1,
+    images: [1, 2, 3, 4, 5, 6]
   },
   "call-recorder": {
     title: "Call Recorder",
@@ -124,8 +124,8 @@ const projectsData = {
     projectType: "web-mobile/mobile-ui",
     projectName: "call-recorder",
     imageSection: "projects",
-    imageIndex: 0,
-    images: [0, 1, 2, 3, 4, 5]
+    imageIndex: 1,
+    images: [1, 2, 3, 4, 5, 6]
   },
   "carteasy": {
     title: "CartEase",
@@ -134,8 +134,8 @@ const projectsData = {
     projectType: "web-mobile/mobile-ui",
     projectName: "carteasy",
     imageSection: "projects",
-    imageIndex: 0,
-    images: [0, 1, 2, 3, 4, 5, 6]
+    imageIndex: 1,
+    images: [1, 2, 3, 4, 5, 6, 7]
   },
   "meal-mate": {
     title: "Meal Mate",
@@ -144,8 +144,8 @@ const projectsData = {
     projectType: "web-mobile/mobile-ui",
     projectName: "meal-mate",
     imageSection: "projects",
-    imageIndex: 0,
-    images: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+    imageIndex: 1,
+    images: [1, 2, 3, 4, 5, 6, 7, 8, 9]
   },
   "voice-changer": {
     title: "Voice Changer",
@@ -154,8 +154,8 @@ const projectsData = {
     projectType: "web-mobile/mobile-ui",
     projectName: "voice-changer",
     imageSection: "projects",
-    imageIndex: 0,
-    images: [0, 1, 2, 3, 4, 5, 6]
+    imageIndex: 1,
+    images: [1, 2, 3, 4, 5, 6, 7]
   },
   "fitness-app": {
     title: "Active Pulse",
@@ -336,6 +336,112 @@ const projectsData = {
     images: [0],
     imageCount: 1,
     isMultimedia: true
+  },
+
+  // Graphic Design - Branding Projects
+  "crunch-brand": {
+    title: "Crunch Brand Identity",
+    category: "Branding",
+    description: "A comprehensive brand identity design for Crunch, including logo, color palette, and brand guidelines.",
+    projectType: "graphic-design/branding",
+    projectName: "crunch-brand",
+    imageSection: "projects",
+    imageIndex: 1,
+    images: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  },
+  "energizer-sustainable": {
+    title: "Energizer Sustainable Solutions",
+    category: "Branding",
+    description: "Brand identity design for Energizer's sustainable product line, emphasizing eco-friendly values.",
+    projectType: "graphic-design/branding",
+    projectName: "energizer-sustainable",
+    imageSection: "projects",
+    imageIndex: 1,
+    images: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+  },
+  "zenith-architecture": {
+    title: "Zenith Architecture & Interiors",
+    category: "Branding",
+    description: "Sophisticated brand identity for Zenith Architecture, reflecting their modern design philosophy.",
+    projectType: "graphic-design/branding",
+    projectName: "zenith-architecture",
+    imageSection: "projects",
+    imageIndex: 1,
+    images: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  },
+
+  // Graphic Design - Print Design Projects
+  "crunch-brand-print": {
+    title: "Crunch Brand Print Design",
+    category: "Print Design",
+    description: "Print collateral design for Crunch brand, including business cards, letterheads, and marketing materials.",
+    projectType: "graphic-design/print",
+    projectName: "crunch-brand",
+    imageSection: "projects",
+    imageIndex: 1,
+    images: [1, 2]
+  },
+  "energizer-sustainable-print": {
+    title: "Energizer Sustainable Print Design",
+    category: "Print Design",
+    description: "Print design for Energizer's sustainable product line, featuring eco-friendly materials and designs.",
+    projectType: "graphic-design/print",
+    projectName: "energizer-sustainable",
+    imageSection: "projects",
+    imageIndex: 1,
+    images: [1, 2]
+  },
+  "zenith-architecture-print": {
+    title: "Zenith Architecture Print Design",
+    category: "Print Design",
+    description: "Print materials for Zenith Architecture, showcasing their portfolio and services.",
+    projectType: "graphic-design/print",
+    projectName: "zenith-architecture",
+    imageSection: "projects",
+    imageIndex: 1,
+    images: [1, 6]
+  },
+
+  // Graphic Design - Social Media Projects
+  "energizer-ads": {
+    title: "Energizer Ads Campaign",
+    category: "Social Media Design",
+    description: "Social media campaign design for Energizer, featuring engaging visuals and consistent branding.",
+    projectType: "graphic-design/social-media",
+    projectName: "energizer-ads",
+    imageSection: "projects",
+    imageIndex: 1,
+    images: [1]
+  },
+  "face-swap": {
+    title: "Face Swap App SS Design",
+    category: "Social Media Design",
+    description: "Social media design for Face Swap app, showcasing app features and user experience.",
+    projectType: "graphic-design/social-media",
+    projectName: "face-swap",
+    imageSection: "projects",
+    imageIndex: 1,
+    images: [1, 2, 3, 4, 5]
+  },
+  "zenith-social": {
+    title: "Zenith Brand Social Media",
+    category: "Social Media Design",
+    description: "Social media content design for Zenith Architecture, highlighting their projects and expertise.",
+    projectType: "graphic-design/social-media",
+    projectName: "zenith-social",
+    imageSection: "projects",
+    imageIndex: 1,
+    images: [1]
+  },
+  "jewelry-social": {
+    title: "Jewelry Brand Social Media Post",
+    category: "Social Media Design",
+    description: "Elegant social media designs for a luxury jewelry brand, emphasizing product aesthetics.",
+    projectType: "graphic-design/social-media",
+    projectName: "jewelry-social",
+    imageSection: "projects",
+    imageIndex: 1,
+    images: [1, 2, 3, 4, 5, 6]
   }
 }
 

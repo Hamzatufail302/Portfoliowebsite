@@ -192,7 +192,8 @@ const projectData: Record<string, Project[]> = {
       slug: "crunch-brand",
       isMultimedia: false,
       projectType: "graphic-design/branding",
-      projectName: "crunch-brand"
+      projectName: "crunch-brand",
+      images: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     },
     {
       title: "Energizer Sustainable Solutions",
@@ -201,7 +202,8 @@ const projectData: Record<string, Project[]> = {
       slug: "energizer-sustainable",
       isMultimedia: false,
       projectType: "graphic-design/branding",
-      projectName: "energizer-sustainable"
+      projectName: "energizer-sustainable",
+      images: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
     },
     {
       title: "Zenith Architecture & Interiors",
@@ -210,7 +212,8 @@ const projectData: Record<string, Project[]> = {
       slug: "zenith-architecture",
       isMultimedia: false,
       projectType: "graphic-design/branding",
-      projectName: "zenith-architecture"
+      projectName: "zenith-architecture",
+      images: [1, 2, 3, 4, 5, 6, 7]
     }
   ],
 
@@ -223,7 +226,8 @@ const projectData: Record<string, Project[]> = {
       slug: "crunch-brand-print",
       isMultimedia: false,
       projectType: "graphic-design/print",
-      projectName: "crunch-brand"
+      projectName: "crunch-brand",
+      images: [1, 2]
     },
     {
       title: "Energizer Sustainable Print Design",
@@ -232,7 +236,8 @@ const projectData: Record<string, Project[]> = {
       slug: "energizer-sustainable-print",
       isMultimedia: false,
       projectType: "graphic-design/print",
-      projectName: "energizer-sustainable"
+      projectName: "energizer-sustainable",
+      images: [1, 2]
     },
     {
       title: "Zenith Architecture Print Design",
@@ -241,7 +246,8 @@ const projectData: Record<string, Project[]> = {
       slug: "zenith-architecture-print",
       isMultimedia: false,
       projectType: "graphic-design/print",
-      projectName: "zenith-architecture"
+      projectName: "zenith-architecture",
+      images: [1, 6]
     }
   ],
 
@@ -254,7 +260,8 @@ const projectData: Record<string, Project[]> = {
       slug: "energizer-ads",
       isMultimedia: false,
       projectType: "graphic-design/social-media",
-      projectName: "energizer-ads"
+      projectName: "energizer-ads",
+      images: [1, 2, 3, 4, 5, 6, 7, 8]
     },
     {
       title: "Face Swap App SS Design",
@@ -263,7 +270,8 @@ const projectData: Record<string, Project[]> = {
       slug: "face-swap",
       isMultimedia: false,
       projectType: "graphic-design/social-media",
-      projectName: "face-swap"
+      projectName: "face-swap",
+      images: [1, 2, 3, 4, 5, 6]
     },
     {
       title: "Zenith Brand Social Media",
@@ -272,7 +280,8 @@ const projectData: Record<string, Project[]> = {
       slug: "zenith-social",
       isMultimedia: false,
       projectType: "graphic-design/social-media",
-      projectName: "zenith-social"
+      projectName: "zenith-social",
+      images: [1, 2, 3, 4, 5, 6, 7]
     },
     {
       title: "Jewelry Brand Social Media Post",
@@ -281,7 +290,8 @@ const projectData: Record<string, Project[]> = {
       slug: "jewelry-social",
       isMultimedia: false,
       projectType: "graphic-design/social-media",
-      projectName: "jewelry-social"
+      projectName: "jewelry-social",
+      images: [1, 2, 3, 4, 5, 6]
     }
   ],
 

@@ -49,8 +49,30 @@ function ProjectContentInner({ project }: ProjectContentProps) {
     <div className="min-h-screen bg-white dark:bg-gray-950">
       <Header />
 
+      {/* Project Header */}
+      <section className="pt-40 pb-10 bg-gray-50 dark:bg-gray-900">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="container mx-auto px-4 text-center"
+        >
+          <div className="max-w-3xl mx-auto space-y-4">
+            <p className="text-sm font-medium text-orange-500 dark:text-orange-400 uppercase tracking-wider">
+              {project.category}
+            </p>
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100">
+              {project.title}
+            </h1>
+            <p className="text-lg text-gray-600 dark:text-gray-400">
+              {project.description}
+            </p>
+          </div>
+        </motion.div>
+      </section>
+
       {/* Project Content */}
-      <section className="py-16 md:py-24">
+      <section className="pt-6 pb-6 md:pt-10 md:pb-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

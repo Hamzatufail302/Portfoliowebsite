@@ -169,7 +169,7 @@ export default function Home() {
       <Header />
 
       {/* Hero Section - Horizontally Centered */}
-      <section className="container mx-auto px-4 py-12 md:py-20 relative">
+      <section className="container mx-auto px-4 pt-28 pb-12 md:pt-36 md:pb-20 relative">
         <div className="grid md:grid-cols-2 gap-8 items-center max-w-5xl mx-auto">
           <AnimateInView variants={fadeInLeft}>
             <h2 className="text-xl font-medium mb-2 dark:text-gray-200">Hi!</h2>

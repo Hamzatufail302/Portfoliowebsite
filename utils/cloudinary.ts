@@ -2,9 +2,9 @@ const CLOUDINARY_CLOUD_NAME = 'di3u607lk';
 
 export function getCloudinaryUrl(path: string): string {
   // Only transform Upward project images for now
-  if (path.includes('/upward/')) {
-    // The path is already in the correct format, just add version
-    const transformedPath = `v1747032909${path}`;
+  if (path.includes('image-')) {
+    // Add version and upward folder
+    const transformedPath = `v1747032909/upward/${path}`;
     
     const finalUrl = `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/${transformedPath}`;
     console.log('Original path:', path);
@@ -19,9 +19,9 @@ export function getCloudinaryUrl(path: string): string {
 
 export function getCloudinaryVideoUrl(path: string): string {
   // Only transform Upward project videos for now
-  if (path.includes('/upward/')) {
-    // The path is already in the correct format, just add version
-    const transformedPath = `v1747032909${path}`;
+  if (path.includes('image-')) {
+    // Add version and upward folder
+    const transformedPath = `v1747032909/upward/${path}`;
     
     const finalUrl = `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/video/upload/${transformedPath}`;
     console.log('Original video path:', path);

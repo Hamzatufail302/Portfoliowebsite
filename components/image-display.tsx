@@ -51,7 +51,7 @@ export default function ImageDisplay({
     }
     // For Upward project, use specific path
     if (projectName === "upward") {
-      return `/upward/image-${index + 1}`;
+      return `image-${index + 1}`;
     }
     // For all other project types
     return `/images/projects/${projectType}/${projectName}/image-${index + 1}.png`

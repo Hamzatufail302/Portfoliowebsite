@@ -27,7 +27,7 @@ export default function Logo() {
         />
       ) : (
         <div className="h-8 w-8 bg-black dark:bg-white rounded-md flex items-center justify-center">
-          <span className="text-white dark:text-black font-bold text-lg">P</span>
+          <span className="text-white dark:text-black font-bold text-lg">C</span>
         </div>
       )}
       <span className="font-semibold text-lg dark:text-white">CreativeHamza</span>

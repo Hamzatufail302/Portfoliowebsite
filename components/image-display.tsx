@@ -1,6 +1,7 @@
 "use client"
 import Image from "next/image"
 import { useState, useEffect, useCallback, useMemo, useRef } from "react"
+import { getOptimizedImageUrl } from "@/utils/cloudinary"
 
 interface ImageDisplayProps {
   section: string
@@ -35,21 +36,29 @@ export default function ImageDisplay({
 }: ImageDisplayProps) {
   // Construct the image path based on the project type and index
   const getImagePath = () => {
+    let path;
     if (projectType === "graphic-design/print") {
       // Map indices to specific print items
       // Crunch Brand images
-      if (index === 0) return `/images/projects/graphic-design/print/crunch-brand/image-1.png`
-      if (index === 1) return `/images/projects/graphic-design/print/crunch-brand/image-2.png`
+      if (index === 0) path = `/images/projects/graphic-design/print/crunch-brand/image-1.png`
+      else if (index === 1) path = `/images/projects/graphic-design/print/crunch-brand/image-2.png`
       // Energizer Sustainable images
-      if (index === 2) return `/images/projects/graphic-design/print/energizer-sustainable/image-1.png`
-      if (index === 3) return `/images/projects/graphic-design/print/energizer-sustainable/image-2.png`
+      else if (index === 2) path = `/images/projects/graphic-design/print/energizer-sustainable/image-1.png`
+      else if (index === 3) path = `/images/projects/graphic-design/print/energizer-sustainable/image-2.png`
       // Zenith Architecture images
-      if (index === 4) return `/images/projects/graphic-design/print/zenith-architecture/image-1.png`
-      if (index === 5) return `/images/projects/graphic-design/print/zenith-architecture/image-6.png`
-      return `/images/projects/graphic-design/print/image-${index + 1}.png`
+      else if (index === 4) path = `/images/projects/graphic-design/print/zenith-architecture/image-1.png`
+      else if (index === 5) path = `/images/projects/graphic-design/print/zenith-architecture/image-6.png`
+      else path = `/images/projects/graphic-design/print/image-${index + 1}.png`
+    } else {
+      // For all other project types
+      path = `/images/projects/${projectType}/${projectName}/image-${index + 1}.png`
     }
-    // For all other project types, include 'projects' in the path and add 1 to the index
-    return `/images/projects/${projectType}/${projectName}/image-${index + 1}.png`
+
+    // Use Cloudinary URL for specific projects
+    if (projectName === "upward") {
+      return getOptimizedImageUrl(path, { width, quality: 90 });
+    }
+    return path;
   }
 
   const [imageSrc, setImageSrc] = useState(getImagePath())

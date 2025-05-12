@@ -7,6 +7,7 @@ import { StaggerContainer, fadeInUp } from "@/components/animations"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import ImageDisplay from "@/components/image-display"
+import { getOptimizedImageUrl } from "@/utils/cloudinary"
 
 interface Category {
   id: string

@@ -205,8 +205,8 @@ export default function Home() {
                   height={400}
                   className="object-contain mx-auto"
                   priority
-                  projectType="web-ui"
-                  projectName="upward"
+                  projectType="hero"
+                  projectName="hero"
                   index={0}
                 />
               </div>

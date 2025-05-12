@@ -7,7 +7,6 @@ import { StaggerContainer, fadeInUp } from "@/components/animations"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import ImageDisplay from "@/components/image-display"
-import { getOptimizedImageUrl } from "@/utils/cloudinary"
 
 interface Category {
   id: string
@@ -23,6 +22,7 @@ interface Project {
   projectType: string
   projectName: string
   videoUrl?: string
+  images?: number[]
 }
 
 interface ServiceProjectFilterProps {
@@ -40,7 +40,8 @@ const projectData: Record<string, Project[]> = {
       slug: "academic-stars",
       isMultimedia: false,
       projectType: "web-mobile/web-ui",
-      projectName: "academic-stars"
+      projectName: "academic-stars",
+      images: [1, 2, 3, 4, 5, 6, 7, 8]
     },
     {
       title: "Bloom Website",
@@ -49,7 +50,8 @@ const projectData: Record<string, Project[]> = {
       slug: "bloom",
       isMultimedia: false,
       projectType: "web-mobile/web-ui",
-      projectName: "bloom"
+      projectName: "bloom",
+      images: [1, 2, 3, 4, 5, 6]
     },
     {
       title: "BrandBridge Website",
@@ -58,7 +60,8 @@ const projectData: Record<string, Project[]> = {
       slug: "brandbridge",
       isMultimedia: false,
       projectType: "web-mobile/web-ui",
-      projectName: "brandbridge"
+      projectName: "brandbridge",
+      images: [1, 2, 3]
     },
     {
       title: "Comfort Corner Website",
@@ -67,7 +70,8 @@ const projectData: Record<string, Project[]> = {
       slug: "comfort-corner",
       isMultimedia: false,
       projectType: "web-mobile/web-ui",
-      projectName: "comfort-corner"
+      projectName: "comfort-corner",
+      images: [1, 2, 3]
     },
     {
       title: "E-commerce Tech Nest",
@@ -76,7 +80,8 @@ const projectData: Record<string, Project[]> = {
       slug: "e-commerce-tech-nest",
       isMultimedia: false,
       projectType: "web-mobile/web-ui",
-      projectName: "e-commerce-tech-nest"
+      projectName: "e-commerce-tech-nest",
+      images: [1, 2, 3]
     },
     {
       title: "Learn Sphere Website",
@@ -85,7 +90,8 @@ const projectData: Record<string, Project[]> = {
       slug: "learn-sphere",
       isMultimedia: false,
       projectType: "web-mobile/web-ui",
-      projectName: "learn-sphere"
+      projectName: "learn-sphere",
+      images: [1, 2, 3]
     },
     {
       title: "MarketIT Website",
@@ -94,7 +100,8 @@ const projectData: Record<string, Project[]> = {
       slug: "marketit",
       isMultimedia: false,
       projectType: "web-mobile/web-ui",
-      projectName: "marketit"
+      projectName: "marketit",
+      images: [1, 2, 3]
     },
     {
       title: "Shadow Nexus Gaming",
@@ -103,7 +110,8 @@ const projectData: Record<string, Project[]> = {
       slug: "shadow-nexus-gaming",
       isMultimedia: false,
       projectType: "web-mobile/web-ui",
-      projectName: "shadow-nexus-gaming"
+      projectName: "shadow-nexus-gaming",
+      images: [1, 2, 3, 4, 5, 6, 7, 8]
     },
     {
       title: "Upward Website",
@@ -112,7 +120,8 @@ const projectData: Record<string, Project[]> = {
       slug: "upward",
       isMultimedia: false,
       projectType: "web-mobile/web-ui",
-      projectName: "upward"
+      projectName: "upward",
+      images: [1, 2, 3, 4, 5, 6, 7]
     }
   ],
 
@@ -299,7 +308,7 @@ const projectData: Record<string, Project[]> = {
       videoUrl: "/videos/projects/brand-bridge/video.mp4"
     },
     {
-      title: "Fitness App Animation",
+      title: "Active Pulse",
       category: "Lottie Animation/Motion Graphics",
       image: "/images/projects/multimedia/lottie-motion-graphic/fitness-app-animation/image-1.png",
       slug: "fitness-app-animation",
@@ -329,7 +338,7 @@ const projectData: Record<string, Project[]> = {
       videoUrl: "/videos/projects/Marwen/video.mp4"
     },
     {
-      title: "Mobile UI Animation",
+      title: "ConnectNow",
       category: "Lottie Animation/Motion Graphics",
       image: "/images/projects/multimedia/lottie-motion-graphic/mobile-animation/image-1.png",
       slug: "mobile-animation",

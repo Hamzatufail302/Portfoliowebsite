@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react"
-import { Play, Pause } from "lucide-react"
+import { useRef, useState } from "react"
+import { getCloudinaryVideoUrl } from "@/utils/cloudinary"
 
 interface VideoPlayerProps {
   src: string
@@ -7,17 +7,16 @@ interface VideoPlayerProps {
 }
 
 export default function VideoPlayer({ src, poster }: VideoPlayerProps) {
-  const [isPlaying, setIsPlaying] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
+  const [isPlaying, setIsPlaying] = useState(false)
 
-  const togglePlay = () => {
+  const handlePlayPause = () => {
     if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause()
-      } else {
+      if (videoRef.current.paused) {
         videoRef.current.play()
+      } else {
+        videoRef.current.pause()
       }
-      setIsPlaying(!isPlaying)
     }
   }
 
@@ -27,31 +26,40 @@ export default function VideoPlayer({ src, poster }: VideoPlayerProps) {
     }
   }
 
+  // Transform video URL if it's from the Upward project
+  const videoUrl = src.includes('/upward/') ? getCloudinaryVideoUrl(src) : src;
+
   return (
-    <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800 group">
+    <div className="relative group">
       <video
         ref={videoRef}
-        className="w-full h-full object-cover"
+        className="w-full rounded-lg"
         controls
-        loop
+        preload="metadata"
         playsInline
-        preload="auto"
         poster={poster}
         onPlay={handleVideoStateChange}
         onPause={handleVideoStateChange}
       >
-        <source src={src} type="video/mp4" />
+        <source src={videoUrl} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      
-      {/* Play/Pause Button Overlay - only show when controls are not visible */}
+      {/* Play button overlay - only show when video is not playing */}
       {!isPlaying && (
-        <button
-          onClick={togglePlay}
-          className="absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-300 opacity-100 hover:opacity-80"
+        <div 
+          className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors cursor-pointer"
+          onClick={handlePlayPause}
         >
-          <Play className="w-16 h-16 text-white" />
-        </button>
+          <div className="w-16 h-16 flex items-center justify-center rounded-full bg-white/90 group-hover:bg-white transition-colors">
+            <svg 
+              className="w-8 h-8 text-[#FF5D3A] translate-x-0.5" 
+              fill="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </div>
+        </div>
       )}
     </div>
   )

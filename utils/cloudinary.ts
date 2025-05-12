@@ -1,31 +1,21 @@
 const CLOUDINARY_CLOUD_NAME = 'di3u607lk';
 
-export function getCloudinaryUrl(path: string): string {
-  // For Upward project images, construct the full Cloudinary URL
+export function getCloudinaryVideoUrl(path: string): string {
+  // For multimedia/lottie-motion-graphic videos
   if (!path.startsWith('http')) {
-    // Add .png extension if not present
-    const filename = path.endsWith('.png') ? path : `${path}.png`;
-    const finalUrl = `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/v1747032909/${filename}`;
-    console.log('Original path:', path);
-    console.log('Final Cloudinary URL:', finalUrl);
-    return finalUrl;
+    // Extract the video name from the path
+    const matches = path.match(/\/videos\/projects\/([^/]+)\/video\.mp4$/);
+    if (matches) {
+      const videoName = matches[1];
+      // Use the correct URL structure for cartease video
+      const finalUrl = `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/video/upload/v1747042726/video.mp4`;
+      console.log('Original video path:', path);
+      console.log('Video name:', videoName);
+      console.log('Final Cloudinary video URL:', finalUrl);
+      return finalUrl;
+    }
   }
   
-  // Return original path if it's already a full URL
+  // Return original path if it's already a full URL or doesn't match our pattern
   return path;
 }
-
-export function getCloudinaryVideoUrl(path: string): string {
-  // For Upward project videos
-  if (!path.startsWith('http')) {
-    // Add .mp4 extension if not present
-    const filename = path.endsWith('.mp4') ? path : `${path}.mp4`;
-    const finalUrl = `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/video/upload/v1747032909/${filename}`;
-    console.log('Original video path:', path);
-    console.log('Final Cloudinary video URL:', finalUrl);
-    return finalUrl;
-  }
-  
-  // Return original path if it's already a full URL
-  return path;
-} 

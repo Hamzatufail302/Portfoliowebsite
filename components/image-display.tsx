@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image"
 import { useState, useEffect, useCallback, useMemo, useRef } from "react"
-import { getCloudinaryUrl } from "@/utils/cloudinary"
+import { getCloudinaryVideoUrl } from "@/utils/cloudinary"
 
 interface ImageDisplayProps {
   section: string
@@ -53,6 +53,10 @@ export default function ImageDisplay({
     if (projectName === "upward") {
       return `image-${index + 1}`; // Just return the base filename for Cloudinary
     }
+    // For hero and about sections, use direct path
+    if (projectType === "hero" || projectType === "about") {
+      return `/images/${projectType}/image-${index + 1}.png`
+    }
     // For all other project types
     return `/images/projects/${projectType}/${projectName}/image-${index + 1}.png`
   }
@@ -98,6 +102,11 @@ export default function ImageDisplay({
   // Memoize video component to prevent unnecessary re-renders
   const VideoComponent = useMemo(() => {
     if (videoUrl && index === 0) {
+      // Always use Cloudinary URL for videos
+      const videoSrc = getCloudinaryVideoUrl(videoUrl);
+      console.log('Video URL:', videoUrl);
+      console.log('Transformed video URL:', videoSrc);
+
       return (
         <div className="relative group">
           <video
@@ -110,7 +119,7 @@ export default function ImageDisplay({
             onPlay={handleVideoStateChange}
             onPause={handleVideoStateChange}
           >
-            <source src={videoUrl} type="video/mp4" />
+            <source src={videoSrc} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
           {/* Play button overlay - only show when video is not playing */}

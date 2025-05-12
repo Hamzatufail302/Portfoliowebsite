@@ -50,7 +50,7 @@ export default function ImageDisplay({
       return `/images/projects/graphic-design/print/image-${index + 1}.png`
     }
     // For Upward project, use specific path
-    if (projectType === "web-ui" && projectName === "upward") {
+    if (projectName === "upward") {
       return `image-${index + 1}`; // Just return the base filename for Cloudinary
     }
     // For all other project types

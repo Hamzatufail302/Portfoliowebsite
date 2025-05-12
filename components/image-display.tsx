@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image"
 import { useState, useEffect, useCallback, useMemo, useRef } from "react"
-import { getOptimizedImageUrl } from "@/utils/cloudinary"
+import { getCloudinaryUrl } from "@/utils/cloudinary"
 
 interface ImageDisplayProps {
   section: string
@@ -36,40 +36,47 @@ export default function ImageDisplay({
 }: ImageDisplayProps) {
   // Construct the image path based on the project type and index
   const getImagePath = () => {
-    let path;
     if (projectType === "graphic-design/print") {
       // Map indices to specific print items
       // Crunch Brand images
-      if (index === 0) path = `/images/projects/graphic-design/print/crunch-brand/image-1.png`
-      else if (index === 1) path = `/images/projects/graphic-design/print/crunch-brand/image-2.png`
+      if (index === 0) return `/images/projects/graphic-design/print/crunch-brand/image-1.png`
+      if (index === 1) return `/images/projects/graphic-design/print/crunch-brand/image-2.png`
       // Energizer Sustainable images
-      else if (index === 2) path = `/images/projects/graphic-design/print/energizer-sustainable/image-1.png`
-      else if (index === 3) path = `/images/projects/graphic-design/print/energizer-sustainable/image-2.png`
+      if (index === 2) return `/images/projects/graphic-design/print/energizer-sustainable/image-1.png`
+      if (index === 3) return `/images/projects/graphic-design/print/energizer-sustainable/image-2.png`
       // Zenith Architecture images
-      else if (index === 4) path = `/images/projects/graphic-design/print/zenith-architecture/image-1.png`
-      else if (index === 5) path = `/images/projects/graphic-design/print/zenith-architecture/image-6.png`
-      else path = `/images/projects/graphic-design/print/image-${index + 1}.png`
-    } else {
-      // For all other project types
-      path = `/images/projects/${projectType}/${projectName}/image-${index + 1}.png`
+      if (index === 4) return `/images/projects/graphic-design/print/zenith-architecture/image-1.png`
+      if (index === 5) return `/images/projects/graphic-design/print/zenith-architecture/image-6.png`
+      return `/images/projects/graphic-design/print/image-${index + 1}.png`
     }
-
-    // Use Cloudinary URL for specific projects
+    // For Upward project, use specific path
     if (projectName === "upward") {
-      return getOptimizedImageUrl(path, { width, quality: 90 });
+      return `/upward/image-${index + 1}`;
     }
-    return path;
+    // For all other project types
+    return `/images/projects/${projectType}/${projectName}/image-${index + 1}.png`
   }
 
-  const [imageSrc, setImageSrc] = useState(getImagePath())
+  const [imageSrc, setImageSrc] = useState(() => {
+    const path = getImagePath();
+    console.log('Project type:', projectType);
+    console.log('Project name:', projectName);
+    console.log('Generated path:', path);
+    const finalSrc = projectName === 'upward' ? getCloudinaryUrl(path) : path;
+    console.log('Final image src:', finalSrc);
+    return finalSrc;
+  })
+  
   const [error, setError] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
 
   const handleError = useCallback(() => {
+    console.error('Image loading error for:', imageSrc);
+    console.log('Falling back to:', fallbackSrc);
     setError(true)
     setImageSrc(fallbackSrc)
-  }, [fallbackSrc])
+  }, [fallbackSrc, imageSrc])
 
   const handlePlayPause = useCallback(() => {
     if (videoRef.current) {
@@ -158,4 +165,3 @@ export default function ImageDisplay({
 
   return <Image {...imageProps} />
 }
-

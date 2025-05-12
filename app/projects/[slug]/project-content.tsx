@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -30,7 +30,8 @@ function hasImageProperties(project: ProjectContentProps['project']): project is
   return !!project.projectType && !!project.projectName;
 }
 
-export default function ProjectContent({ project }: ProjectContentProps) {
+// Separate the content that uses useSearchParams
+function ProjectContentInner({ project }: ProjectContentProps) {
   const searchParams = useSearchParams()
   const fromService = searchParams.get("from") === "service"
   const section = searchParams.get("section") || ""
@@ -38,7 +39,7 @@ export default function ProjectContent({ project }: ProjectContentProps) {
   // Get video path and poster image path
   const hasVideo = project.isMultimedia && (project.videoUrl || project.projectName)
   const videoPath = project.videoUrl ?? 
-    (project.projectName ? `/videos/projects/${project.projectName ?? ''}/video.mp4` : "/videos/projects/placeholder.mp4")
+    (project.projectName ? `/videos/projects/${project.projectName}/video.mp4` : "/videos/projects/placeholder.mp4")
   const posterPath = project.projectType && project.projectName
     ? `/images/projects/${project.projectType}/${project.projectName}/image-1.png`
     : `/images/projects/placeholder-video.png`
@@ -96,5 +97,26 @@ export default function ProjectContent({ project }: ProjectContentProps) {
 
       <Footer />
     </div>
+  )
+}
+
+// Main component wrapped in Suspense
+export default function ProjectContent(props: ProjectContentProps) {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-white dark:bg-gray-950">
+        <Header />
+        <div className="py-16 md:py-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-[1400px] mx-auto">
+              <div className="w-full h-[600px] bg-gray-100 dark:bg-gray-800 rounded-lg animate-pulse" />
+            </div>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    }>
+      <ProjectContentInner {...props} />
+    </Suspense>
   )
 } 

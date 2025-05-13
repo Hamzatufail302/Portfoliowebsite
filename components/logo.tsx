@@ -16,21 +16,11 @@ export default function Logo() {
   }, [])
 
   return (
-    <div className="flex items-center gap-2">
-      {logoSrc ? (
-        <Image
-          src={logoSrc}
-          width={40}
-          height={40}
-          className="rounded-lg"
-          alt="CreativeHamza Logo"
-        />
-      ) : (
-        <div className="h-8 w-8 bg-black dark:bg-white rounded-md flex items-center justify-center">
-          <span className="text-white dark:text-black font-bold text-lg">C</span>
-        </div>
-      )}
-      <span className="font-semibold text-lg dark:text-white">CreativeHamza</span>
+    <div className="flex items-center gap-3">
+      <div className="w-7 h-7 rounded bg-black flex items-center justify-center">
+        <span className="text-white font-bold text-lg">C</span>
+      </div>
+      <span className="font-bold text-xl dark:text-white">CreativeHamza</span>
     </div>
   )
 }

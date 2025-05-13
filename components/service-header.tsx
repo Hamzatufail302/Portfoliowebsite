@@ -20,10 +20,10 @@ export default function ServiceHeader({
   icon: React.ReactNode
 }) {
   return (
-    <section className="bg-[#F9F9F9] dark:bg-gray-900 py-24 md:py-40">
+    <section className="bg-[#F9F9F9] dark:bg-gray-900 pt-24 md:pt-40 pb-16 md:pb-24">
       <div className="container mx-auto px-4">
         <motion.div
-          className="flex flex-col items-center text-center max-w-3xl mx-auto"
+          className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -32,6 +32,7 @@ export default function ServiceHeader({
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
+            className="flex items-center justify-center"
           >
             {icon}
           </motion.div>
@@ -47,7 +48,7 @@ export default function ServiceHeader({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
-            className="text-3xl md:text-5xl font-bold mb-5 dark:text-white"
+            className="text-3xl md:text-5xl font-bold mb-4 dark:text-white"
           >
             {title}
           </motion.h1>
@@ -55,7 +56,7 @@ export default function ServiceHeader({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.5 }}
-            className="text-gray-600 dark:text-gray-300 mb-0 max-w-2xl"
+            className="text-gray-600 dark:text-gray-300 max-w-2xl"
           >
             {description}
           </motion.p>

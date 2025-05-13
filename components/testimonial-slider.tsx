@@ -62,18 +62,12 @@ export default function TestimonialSlider() {
             <div className="text-2xl font-serif text-[#FF5D3A]">&ldquo;</div>
             <p className="text-gray-700 dark:text-gray-300 text-sm">{currentTestimonial.quote}</p>
             <div className="flex items-center gap-3 mt-4">
-              <div className="w-[40px] h-[40px] rounded-full overflow-hidden">
-                <ImageDisplay
-                  section={currentTestimonial.imageSection}
-                  projectType={currentTestimonial.projectType}
-                  projectName={currentTestimonial.projectName}
-                  index={currentTestimonial.imageIndex}
-                  fallbackSrc="/placeholder.svg?height=40&width=40"
-                  alt={currentTestimonial.author}
-                  width={40}
-                  height={40}
-                  className="rounded-full object-cover"
-                />
+              <div className="w-[40px] h-[40px] rounded-full overflow-hidden flex items-center justify-center" style={{
+                backgroundColor: currentTestimonial.author === "99 Marketing Studio" ? "#FF5D3A" : "#3B82F6"
+              }}>
+                <span className="text-white font-bold text-lg">
+                  {currentTestimonial.author === "99 Marketing Studio" ? "99" : "C"}
+                </span>
               </div>
               <span className="font-medium text-sm dark:text-white">{currentTestimonial.author}</span>
             </div>

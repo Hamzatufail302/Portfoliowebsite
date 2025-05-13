@@ -254,6 +254,36 @@ const projectData: Record<string, Project[]> = {
   // Social Media projects
   "social-media": [
     {
+      title: "LeatherPoint Social Media",
+      category: "Social Media Design",
+      image: "/images/projects/graphic-design/social-media/LeatherPoint/image-1.png",
+      slug: "leather-point",
+      isMultimedia: false,
+      projectType: "graphic-design/social-media",
+      projectName: "LeatherPoint",
+      images: [1]
+    },
+    {
+      title: "GemPassion Social Media",
+      category: "Social Media Design",
+      image: "/images/projects/graphic-design/social-media/GemPassion/image-1.png",
+      slug: "gem-passion",
+      isMultimedia: false,
+      projectType: "graphic-design/social-media",
+      projectName: "GemPassion",
+      images: [1]
+    },
+    {
+      title: "Face Swap App Social Media",
+      category: "Social Media Design",
+      image: "/images/projects/graphic-design/social-media/face-swap/image-1.png",
+      slug: "face-swap",
+      isMultimedia: false,
+      projectType: "graphic-design/social-media",
+      projectName: "face-swap",
+      images: [1, 2, 3, 4, 5]
+    },
+    {
       title: "Energizer Ads Campaign",
       category: "Social Media Design",
       image: "/images/projects/graphic-design/social-media/energizer-ads/image-1.png",
@@ -261,17 +291,7 @@ const projectData: Record<string, Project[]> = {
       isMultimedia: false,
       projectType: "graphic-design/social-media",
       projectName: "energizer-ads",
-      images: [1, 2, 3, 4, 5, 6, 7, 8]
-    },
-    {
-      title: "Face Swap App SS Design",
-      category: "Social Media Design",
-      image: "/images/projects/graphic-design/social-media/face-swap/image-1.png",
-      slug: "face-swap",
-      isMultimedia: false,
-      projectType: "graphic-design/social-media",
-      projectName: "face-swap",
-      images: [1, 2, 3, 4, 5, 6]
+      images: [1]
     },
     {
       title: "Zenith Brand Social Media",
@@ -281,17 +301,7 @@ const projectData: Record<string, Project[]> = {
       isMultimedia: false,
       projectType: "graphic-design/social-media",
       projectName: "zenith-social",
-      images: [1, 2, 3, 4, 5, 6, 7]
-    },
-    {
-      title: "Jewelry Brand Social Media Post",
-      category: "Social Media Design",
-      image: "/images/projects/graphic-design/social-media/jewelry-social/image-1.png",
-      slug: "jewelry-social",
-      isMultimedia: false,
-      projectType: "graphic-design/social-media",
-      projectName: "jewelry-social",
-      images: [1, 2, 3, 4, 5, 6]
+      images: [1]
     }
   ],
 
@@ -507,7 +517,7 @@ export default function ServiceProjectFilter({ categories }: ServiceProjectFilte
     <div className="space-y-8">
       {/* Category Navigation */}
       <motion.div
-        className="flex flex-wrap gap-4 justify-center mb-8"
+        className="flex flex-wrap gap-4 justify-center mb-12"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
@@ -529,17 +539,6 @@ export default function ServiceProjectFilter({ categories }: ServiceProjectFilte
           </motion.button>
         ))}
       </motion.div>
-
-      {/* Section Title */}
-      <motion.h2
-        className="text-2xl font-bold mb-6 flex items-center dark:text-white"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        <span className="h-5 w-5 bg-[#FF5D3A] mr-2 rounded"></span>
-        {categories.find((cat) => cat.id === selectedCategory)?.name || ""} Designs
-      </motion.h2>
 
       {/* Project Grid */}
       <div className="w-full">

@@ -57,8 +57,11 @@ const projectCategories = {
   "zenith-architecture-print": "Print Design",
 
   // Social Media Projects
-  "fashion-social": "Social Media Design",
-  "food-social": "Social Media Design",
+  "leather-point": "Social Media Design",
+  "gem-passion": "Social Media Design",
+  "face-swap": "Social Media Design",
+  "energizer-ads": "Social Media Design",
+  "zenith-social": "Social Media Design",
 
   // Animation Projects
   "bloom-animation": "Lottie Animation/Motion Graphics",

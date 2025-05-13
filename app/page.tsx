@@ -263,11 +263,11 @@ export default function Home() {
       </section>
 
       {/* About Section - Adjusted spacing and button */}
-      <section id="about" className="container mx-auto px-4 -mt-4 pb-20 md:mt-0 md:pt-4 md:pb-28 relative">
-        <div className="grid md:grid-cols-2 gap-4 md:gap-8 md:gap-16 items-center max-w-5xl mx-auto">
+      <section id="about" className="container mx-auto px-4 pb-4 md:pb-8 relative">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-8 items-center max-w-5xl mx-auto">
           <AnimateInView variants={fadeInLeft}>
             <div className="relative flex justify-center">
-              <div className="relative w-[320px] h-[320px] sm:w-[350px] sm:h-[350px] md:h-[450px] md:w-[450px]">
+              <div className="relative w-[320px] h-[320px] sm:w-[350px] sm:h-[350px] md:h-[450px] md:w-[450px] mx-auto">
                 <ImageDisplay
                   section="about"
                   fallbackSrc="/images/about/image-1.png"
@@ -284,7 +284,7 @@ export default function Home() {
             </div>
           </AnimateInView>
 
-          <AnimateInView variants={fadeInRight}>
+          <AnimateInView variants={fadeInRight} className="flex flex-col items-start justify-center">
             <div className="text-[#FF5D3A] font-medium mb-1">ABOUT ME</div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4 dark:text-white">WHO I AM</h2>
             <p className="text-gray-600 dark:text-gray-300 mb-6 md:mb-8 text-sm sm:text-base">

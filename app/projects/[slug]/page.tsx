@@ -262,6 +262,19 @@ const projectsData = {
     isMultimedia: true,
     videoUrl: "https://res.cloudinary.com/di3u607lk/video/upload/v1747042633/video_ojk1zs.mp4"
   },
+  "upward-animation": {
+    title: "Upward Animation",
+    category: "Lottie Animation/Motion Graphics",
+    description: "Dynamic motion graphics for Upward platform, showcasing smooth transitions and engaging animations.",
+    projectType: "multimedia/lottie-motion-graphic",
+    projectName: "upward-animation",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0],
+    imageCount: 1,
+    isMultimedia: true,
+    videoUrl: "https://res.cloudinary.com/di3u607lk/video/upload/v1747042681/video_h2cmuk.mp4"
+  },
   "fitness-app-animation": {
     title: "Active Pulse",
     category: "Lottie Animation/Motion Graphics",
@@ -403,25 +416,45 @@ const projectsData = {
   },
 
   // Graphic Design - Social Media Projects
-  "energizer-ads": {
-    title: "Energizer Ads Campaign",
+  "leather-point": {
+    title: "LeatherPoint Social Media",
     category: "Social Media Design",
-    description: "Social media campaign design for Energizer, featuring engaging visuals and consistent branding.",
+    description: "Social media designs for LeatherPoint, showcasing their premium leather products and brand identity.",
     projectType: "graphic-design/social-media",
-    projectName: "energizer-ads",
+    projectName: "LeatherPoint",
+    imageSection: "projects",
+    imageIndex: 1,
+    images: [1]
+  },
+  "gem-passion": {
+    title: "GemPassion Social Media",
+    category: "Social Media Design",
+    description: "Elegant social media content for GemPassion jewelry brand, highlighting their unique collections.",
+    projectType: "graphic-design/social-media",
+    projectName: "GemPassion",
     imageSection: "projects",
     imageIndex: 1,
     images: [1]
   },
   "face-swap": {
-    title: "Face Swap App SS Design",
+    title: "Face Swap App Social Media",
     category: "Social Media Design",
-    description: "Social media design for Face Swap app, showcasing app features and user experience.",
+    description: "Social media designs for Face Swap app, showcasing the app's features and fun transformations.",
     projectType: "graphic-design/social-media",
     projectName: "face-swap",
     imageSection: "projects",
     imageIndex: 1,
     images: [1, 2, 3, 4, 5]
+  },
+  "energizer-ads": {
+    title: "Energizer Ads Campaign",
+    category: "Social Media Design",
+    description: "Social media campaign designs for Energizer, featuring engaging visuals and consistent branding.",
+    projectType: "graphic-design/social-media",
+    projectName: "energizer-ads",
+    imageSection: "projects",
+    imageIndex: 1,
+    images: [1]
   },
   "zenith-social": {
     title: "Zenith Brand Social Media",

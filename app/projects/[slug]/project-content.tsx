@@ -24,6 +24,7 @@ type ProjectContentProps = {
     videoUrl?: string
     projectName?: string
     projectType?: string
+    slug: string
   }
 }
 
@@ -39,12 +40,32 @@ function ProjectContentInner({ project }: ProjectContentProps) {
   const section = searchParams.get("section") || ""
 
   // Get video path and poster image path
-  const hasVideo = project.isMultimedia && (project.videoUrl || project.projectName)
+  const hasVideo = project.videoUrl || (project.isMultimedia && project.projectName)
   const videoPath = project.videoUrl ?? 
     (project.projectName ? `/videos/projects/${project.projectName}/video.mp4` : "/videos/projects/placeholder.mp4")
-  const posterPath = project.projectType && project.projectName
-    ? `/images/projects/${project.projectType}/${project.projectName}/image-1.png`
-    : `/images/projects/placeholder-video.png`
+  
+  // Use Cloudinary thumbnails for Lottie animations
+  const getPosterPath = () => {
+    if (project.category?.includes("Lottie Animation")) {
+      const thumbnailMap: { [key: string]: string } = {
+        'voice-changer-animation': 'https://res.cloudinary.com/di3u607lk/image/upload/v1747151732/voice-changer.png',
+        'upward-animation': 'https://res.cloudinary.com/di3u607lk/image/upload/v1747151714/upward.png',
+        'shadow-nexus-animation': 'https://res.cloudinary.com/di3u607lk/image/upload/v1747151701/Shadow-Nexus.png',
+        'mobile-animation': 'https://res.cloudinary.com/di3u607lk/image/upload/v1747151682/Connect.png',
+        'fitness-app-animation': 'https://res.cloudinary.com/di3u607lk/image/upload/v1747151656/ActivePulse.png',
+        'marwen-animation': 'https://res.cloudinary.com/di3u607lk/image/upload/v1747151667/Marwen.png',
+        'cartease-animation': 'https://res.cloudinary.com/di3u607lk/image/upload/v1747151631/CartEase.png',
+        'brand-bridge-animation': 'https://res.cloudinary.com/di3u607lk/image/upload/v1747151620/BrandBridge.png',
+        'bloom-animation': 'https://res.cloudinary.com/di3u607lk/image/upload/v1747151607/bloom.png'
+      }
+      return thumbnailMap[project.slug] || ''
+    }
+    return project.projectType && project.projectName
+      ? `/images/projects/${project.projectType}/${project.projectName}/image-1.png`
+      : `/images/projects/placeholder-video.png`
+  }
+  
+  const posterPath = getPosterPath()
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">

@@ -7,6 +7,18 @@ import { motion } from "framer-motion"
 import { fadeInUp } from "@/components/animations"
 import { PlayCircle } from "lucide-react"
 
+const thumbnailMap: { [key: string]: string } = {
+  'voice-changer-animation': 'https://res.cloudinary.com/di3u607lk/image/upload/v1747151732/voice-changer.png',
+  'upward-animation': 'https://res.cloudinary.com/di3u607lk/image/upload/v1747151714/upward.png',
+  'shadow-nexus-animation': 'https://res.cloudinary.com/di3u607lk/image/upload/v1747151701/Shadow-Nexus.png',
+  'mobile-animation': 'https://res.cloudinary.com/di3u607lk/image/upload/v1747151682/Connect.png',
+  'fitness-app-animation': 'https://res.cloudinary.com/di3u607lk/image/upload/v1747151656/ActivePulse.png',
+  'marwen-animation': 'https://res.cloudinary.com/di3u607lk/image/upload/v1747151667/Marwen.png',
+  'cartease-animation': 'https://res.cloudinary.com/di3u607lk/image/upload/v1747151631/CartEase.png',
+  'brand-bridge-animation': 'https://res.cloudinary.com/di3u607lk/image/upload/v1747151620/BrandBridge.png',
+  'bloom-animation': 'https://res.cloudinary.com/di3u607lk/image/upload/v1747151607/bloom.png'
+}
+
 interface Project {
   title: string
   category: string
@@ -61,20 +73,31 @@ export default function ProjectGrid({ projects, fromService = false }: ProjectGr
               <div className="relative aspect-[4/3] overflow-hidden">
                 {project.videoUrl ? (
                   <>
-                    <video
-                      src={project.videoUrl}
-                      className="w-full h-full object-cover"
-                      muted
-                      loop
-                      playsInline
-                      onMouseEnter={(e) => e.currentTarget.play()}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.pause()
-                        e.currentTarget.currentTime = 0
-                      }}
-                    >
-                      <source src={project.videoUrl} type="video/mp4" />
-                    </video>
+                    {project.category?.includes("Lottie Animation") ? (
+                      <Image
+                        src={thumbnailMap[project.slug] || `https://res.cloudinary.com/di3u607lk/image/upload/v1747140785/${project.slug}-thumb.png.png`}
+                        alt={project.title}
+                        width={400}
+                        height={300}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        priority={index < 3}
+                      />
+                    ) : (
+                      <video
+                        src={project.videoUrl}
+                        className="w-full h-full object-cover"
+                        muted
+                        loop
+                        playsInline
+                        onMouseEnter={(e) => e.currentTarget.play()}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.pause()
+                          e.currentTarget.currentTime = 0
+                        }}
+                      >
+                        <source src={project.videoUrl} type="video/mp4" />
+                      </video>
+                    )}
                     <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <PlayCircle className="w-12 h-12 text-white" />
                     </div>

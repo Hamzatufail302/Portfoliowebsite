@@ -1,6 +1,11 @@
 const CLOUDINARY_CLOUD_NAME = 'di3u607lk';
 
 export function getCloudinaryUrl(path: string): string {
+  // For direct image paths (like "image-1")
+  if (path.match(/^image-\d+$/)) {
+    return `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/v1747032909/${path}.png`;
+  }
+
   // For all project images
   if (!path.startsWith('http')) {
     // Extract the project type and name from the path

@@ -10,6 +10,7 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import VideoPlayer from "@/components/video-player"
 import Image from "next/image"
+import { fadeInUp } from "@/components/animations"
 
 type ProjectContentProps = {
   project: {
@@ -50,7 +51,7 @@ function ProjectContentInner({ project }: ProjectContentProps) {
       <Header />
 
       {/* Project Header */}
-      <section className="pt-40 pb-10 bg-gray-50 dark:bg-gray-900">
+      <section className="pt-40 pb-10 bg-gray-100 dark:bg-gray-950">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -58,15 +59,13 @@ function ProjectContentInner({ project }: ProjectContentProps) {
           className="container mx-auto px-4 text-center"
         >
           <div className="max-w-3xl mx-auto space-y-4">
-            <p className="text-sm font-medium text-orange-500 dark:text-orange-400 uppercase tracking-wider">
-              {project.category}
-            </p>
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100">
-              {project.title}
-            </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-400">
-              {project.description}
-            </p>
+            <div className="text-center pt-8 pb-11">
+              <div className="text-[#FF5D3A] font-medium mb-3">{project.category.toUpperCase()}</div>
+              <h1 className="text-3xl md:text-5xl font-bold mb-4 dark:text-white">{project.title}</h1>
+              <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
+                {project.description}
+              </p>
+            </div>
           </div>
         </motion.div>
       </section>

@@ -93,7 +93,7 @@ const projects: ProjectCategory[] = [
         id: 1,
         title: "Interface Animation",
         description: "Engaging interface animations for enhanced user experience",
-        video: "/videos/thumbnails/interface-animation.mp4",
+        video: "https://res.cloudinary.com/di3u607lk/video/upload/v1747042649/video_l38n1n.mp4",
         technologies: ["After Effects", "Premiere Pro"],
         link: "/services/multimedia#animation",
         featured: true
@@ -102,7 +102,7 @@ const projects: ProjectCategory[] = [
         id: 2,
         title: "Motion Graphics",
         description: "Dynamic motion graphics for digital content",
-        video: "/videos/thumbnails/motion-graphics.mp4",
+        video: "https://res.cloudinary.com/di3u607lk/video/upload/v1747042726/video.mp4",
         technologies: ["After Effects", "Premiere Pro"],
         link: "/services/multimedia#motion-graphics",
         featured: true
@@ -111,7 +111,7 @@ const projects: ProjectCategory[] = [
         id: 3,
         title: "Video Editing",
         description: "Professional video editing and post-production",
-        video: "/videos/thumbnails/video-editing.mp4",
+        video: "https://res.cloudinary.com/di3u607lk/video/upload/v1747042656/video_wtgjfu.mp4",
         technologies: ["Premiere Pro", "After Effects"],
         link: "/services/multimedia#video-editing",
         featured: true
@@ -120,7 +120,7 @@ const projects: ProjectCategory[] = [
         id: 4,
         title: "Lottie Animation",
         description: "Interactive Lottie animations for web and mobile apps",
-        video: "/videos/thumbnails/lottie-animation.mp4",
+        video: "https://res.cloudinary.com/di3u607lk/video/upload/v1747042633/video_ojk1zs.mp4",
         technologies: ["After Effects", "Bodymovin"],
         link: "/services/multimedia#animation",
         featured: true
@@ -370,11 +370,25 @@ export default function Home() {
                 >
                   <div className="relative h-52">
                     {project.video ? (
-                      <video 
-                        src={project.video}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                        controls
-                      />
+                      <>
+                        <video 
+                          src={project.video}
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          muted
+                          playsInline
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-opacity">
+                          <div className="w-12 h-12 flex items-center justify-center rounded-full bg-white/90 group-hover:bg-white transition-colors">
+                            <svg 
+                              className="w-6 h-6 text-[#FF5D3A] translate-x-0.5" 
+                              fill="currentColor" 
+                              viewBox="0 0 24 24"
+                            >
+                              <path d="M8 5v14l11-7z" />
+                            </svg>
+                          </div>
+                        </div>
+                      </>
                     ) : (
                       <img 
                         src={project.image} 

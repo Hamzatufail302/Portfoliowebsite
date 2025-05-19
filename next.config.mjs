@@ -29,8 +29,6 @@ const nextConfig = {
   },
   output: 'standalone',
   experimental: {
-    optimizeCss: true,
-    optimizePackageImports: ['framer-motion', 'lucide-react', 'recharts'],
     webpackBuildWorker: true,
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,

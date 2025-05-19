@@ -20,16 +20,26 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ['**'],
-    unoptimized: true,
-    minimumCacheTTL: 60,
+    domains: ['res.cloudinary.com'],
+    unoptimized: false,
+    minimumCacheTTL: 31536000,
+    deviceSizes: [640, 750, 828, 1080, 1200],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256],
+    formats: ['image/webp'],
   },
   output: 'standalone',
   experimental: {
+    optimizeCss: true,
+    optimizePackageImports: ['framer-motion', 'lucide-react', 'recharts'],
     webpackBuildWorker: true,
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  poweredByHeader: false,
+  compress: true,
 }
 
 if (userConfig) {

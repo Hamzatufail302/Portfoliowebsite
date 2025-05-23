@@ -101,7 +101,7 @@ function ProjectContentInner({ project }: ProjectContentProps) {
           transition={{ duration: 0.6 }}
           className="container mx-auto px-4"
         >
-          <div className="max-w-[823px] mx-auto">
+          <div className="max-w-[905px] mx-auto">
             {hasVideo ? (
               // Video display for multimedia projects
               <div className="bg-gray-100 dark:bg-gray-900 rounded-lg p-4 md:p-8">
@@ -117,11 +117,13 @@ function ProjectContentInner({ project }: ProjectContentProps) {
                       projectType={project.projectType}
                       projectName={project.projectName}
                       index={imageIndex}
-                      fallbackSrc={`/placeholder.svg?height=800&width=1200&text=${project.title}`}
+                      fallbackSrc={`/placeholder.svg?height=1000&width=1500&text=${project.title}`}
                       alt={`${project.title} - Image ${idx + 1}`}
-                      width={1200}
-                      height={800}
+                      width={1500}
+                      height={1000}
                       className="w-full h-auto"
+                      sizes="(max-width: 905px) 100vw, 905px"
+                      priority={idx === 0}
                     />
                   </div>
                 ))}
@@ -155,7 +157,7 @@ export default function ProjectContent(props: ProjectContentProps) {
         <Header />
         <div className="py-16 md:py-24">
           <div className="container mx-auto px-4">
-            <div className="max-w-[823px] mx-auto">
+            <div className="max-w-[905px] mx-auto">
               <div className="w-full h-[600px] bg-gray-100 dark:bg-gray-800 rounded-lg animate-pulse" />
             </div>
           </div>

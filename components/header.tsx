@@ -75,8 +75,10 @@ const projectCategories = {
   "voice-changer-animation": "Lottie Animation/Motion Graphics",
 
   // Video Editing Projects
-  "corporate-video": "Video Editing",
-  "product-video": "Video Editing"
+  "fashion-city": "Video Editing",
+  "gengez-khan": "Video Editing",
+  "iman-gadhi": "Video Editing",
+  "social-media-marketing-agency": "Video Editing"
 }
 
 // Separate the content that uses useSearchParams

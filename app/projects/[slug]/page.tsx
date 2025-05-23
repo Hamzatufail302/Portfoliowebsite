@@ -1,4 +1,3 @@
-import type { Metadata } from "next"
 import type React from "react"
 import { notFound } from "next/navigation"
 import ProjectContent from "./project-content"
@@ -507,32 +506,14 @@ const projectsData = {
   }
 }
 
-type Props = {
-  params: { slug: string }
-}
-
-// Generate metadata for the page
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const project = projectsData[params.slug as keyof typeof projectsData]
-  
-  if (!project) {
-    return {
-      title: 'Project Not Found'
-    }
-  }
-
-  return {
-    title: project.title,
-    description: project.description
-  }
-}
-
-export default function ProjectPage({ params }: Props) {
-  const project = projectsData[params.slug as keyof typeof projectsData]
+export default async function ProjectPage({ params }: { params: { slug: string } }) {
+  // Fix for Next.js async params issue
+  const slug = await Promise.resolve(params.slug)
+  const project = projectsData[slug as keyof typeof projectsData]
 
   if (!project) {
     notFound()
   }
 
-  return <ProjectContent project={{ ...project, slug: params.slug }} />
+  return <ProjectContent project={project} />
 }

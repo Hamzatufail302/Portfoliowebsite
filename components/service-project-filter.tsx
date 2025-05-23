@@ -400,22 +400,40 @@ const projectData: Record<string, Project[]> = {
   ],
   "video-editing": [
     {
-      title: "Corporate Overview Video",
+      title: "Fashion City",
       category: "Video Editing",
-      image: "/images/projects/multimedia/video-editing/corporate-video/image-1.png",
-      slug: "corporate-video",
+      image: "/images/projects/multimedia/video-editing/fashion-city/image-1.png",
+      slug: "fashion-city",
       isMultimedia: true,
       projectType: "multimedia/video-editing",
-      projectName: "corporate-video"
+      projectName: "fashion-city"
     },
     {
-      title: "Product Launch Video",
+      title: "Gengez Khan",
       category: "Video Editing",
-      image: "/images/projects/multimedia/video-editing/product-video/image-1.png",
-      slug: "product-video",
+      image: "/images/projects/multimedia/video-editing/gengez-khan/image-1.png",
+      slug: "gengez-khan",
       isMultimedia: true,
       projectType: "multimedia/video-editing",
-      projectName: "product-video"
+      projectName: "gengez-khan"
+    },
+    {
+      title: "Iman Gadhi",
+      category: "Video Editing",
+      image: "/images/projects/multimedia/video-editing/iman-gadhi/image-1.png",
+      slug: "iman-gadhi",
+      isMultimedia: true,
+      projectType: "multimedia/video-editing",
+      projectName: "iman-gadhi"
+    },
+    {
+      title: "Social Media Marketing Agency",
+      category: "Video Editing",
+      image: "/images/projects/multimedia/video-editing/social-media-marketing-agency/image-1.png",
+      slug: "social-media-marketing-agency",
+      isMultimedia: true,
+      projectType: "multimedia/video-editing",
+      projectName: "social-media-marketing-agency"
     }
   ],
 }

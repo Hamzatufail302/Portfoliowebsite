@@ -42,7 +42,9 @@ function ProjectContentInner({ project }: ProjectContentProps) {
   // Get video path and poster image path
   const hasVideo = project.videoUrl || (project.isMultimedia && project.projectName)
   const videoPath = project.videoUrl ?? 
-    (project.projectName ? `/videos/projects/${project.projectName}/video.mp4` : "/videos/projects/placeholder.mp4")
+    (project.projectType && project.projectName 
+      ? `/images/projects/${project.projectType}/${project.projectName}/video.mp4` 
+      : "/videos/projects/placeholder.mp4")
   
   // Use Cloudinary thumbnails for Lottie animations
   const getPosterPath = () => {
@@ -102,7 +104,9 @@ function ProjectContentInner({ project }: ProjectContentProps) {
           <div className="max-w-[1400px] mx-auto">
             {hasVideo ? (
               // Video display for multimedia projects
-              <VideoPlayer src={videoPath} poster={posterPath} />
+              <div className="bg-gray-100 dark:bg-gray-900 rounded-lg p-4 md:p-8">
+                <VideoPlayer src={videoPath} poster={posterPath} />
+              </div>
             ) : hasImageProperties(project) ? (
               // Image display for non-multimedia projects
               <div className="grid grid-cols-1 gap-8">

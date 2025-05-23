@@ -101,11 +101,11 @@ function ProjectContentInner({ project }: ProjectContentProps) {
           transition={{ duration: 0.6 }}
           className="container mx-auto px-4"
         >
-          <div className="max-w-[1400px] mx-auto">
+          <div className="max-w-[823px] mx-auto">
             {hasVideo ? (
               // Video display for multimedia projects
               <div className="bg-gray-100 dark:bg-gray-900 rounded-lg p-4 md:p-8">
-                <VideoPlayer src={videoPath} poster={posterPath} />
+              <VideoPlayer src={videoPath} poster={posterPath} />
               </div>
             ) : hasImageProperties(project) ? (
               // Image display for non-multimedia projects
@@ -155,7 +155,7 @@ export default function ProjectContent(props: ProjectContentProps) {
         <Header />
         <div className="py-16 md:py-24">
           <div className="container mx-auto px-4">
-            <div className="max-w-[1400px] mx-auto">
+            <div className="max-w-[823px] mx-auto">
               <div className="w-full h-[600px] bg-gray-100 dark:bg-gray-800 rounded-lg animate-pulse" />
             </div>
           </div>

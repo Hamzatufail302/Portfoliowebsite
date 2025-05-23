@@ -27,14 +27,14 @@ export default function VideoPlayer({ src, poster }: VideoPlayerProps) {
   const handlePlayPause = async () => {
     if (videoRef.current) {
       try {
-        if (videoRef.current.paused) {
+      if (videoRef.current.paused) {
           // Force reload before playing if it's the first play
           if (!isLoaded) {
             videoRef.current.load()
           }
           await videoRef.current.play()
-        } else {
-          videoRef.current.pause()
+      } else {
+        videoRef.current.pause()
         }
       } catch (error) {
         console.error('Video playback error:', error)
@@ -67,39 +67,39 @@ export default function VideoPlayer({ src, poster }: VideoPlayerProps) {
   return (
     <div className="relative group max-w-4xl mx-auto">
       <div className="relative w-full aspect-video bg-black rounded-lg">
-        <video
-          ref={videoRef}
+      <video
+        ref={videoRef}
           className="absolute inset-0 w-full h-full rounded-lg object-contain"
-          controls
-          preload="metadata"
-          playsInline
-          poster={poster}
-          onPlay={handleVideoStateChange}
-          onPause={handleVideoStateChange}
+        controls
+        preload="metadata"
+        playsInline
+        poster={poster}
+        onPlay={handleVideoStateChange}
+        onPause={handleVideoStateChange}
           onLoadedData={handleLoadedData}
           onError={handleError}
           onLoadStart={() => setIsLoaded(false)}
-        >
-          <source src={videoUrl} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+      >
+        <source src={videoUrl} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
         {/* Play button overlay - only show when video is not playing, is loaded, and has no errors */}
         {!isPlaying && isLoaded && !hasError && (
-          <div 
-            className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors cursor-pointer"
-            onClick={handlePlayPause}
-          >
-            <div className="w-16 h-16 flex items-center justify-center rounded-full bg-white/90 group-hover:bg-white transition-colors">
-              <svg 
-                className="w-8 h-8 text-[#FF5D3A] translate-x-0.5" 
-                fill="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
+        <div 
+          className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors cursor-pointer"
+          onClick={handlePlayPause}
+        >
+          <div className="w-16 h-16 flex items-center justify-center rounded-full bg-white/90 group-hover:bg-white transition-colors">
+            <svg 
+              className="w-8 h-8 text-[#FF5D3A] translate-x-0.5" 
+              fill="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path d="M8 5v14l11-7z" />
+            </svg>
           </div>
-        )}
+        </div>
+      )}
         {/* Loading indicator */}
         {!isLoaded && !hasError && (
           <div className="absolute inset-0 flex items-center justify-center">

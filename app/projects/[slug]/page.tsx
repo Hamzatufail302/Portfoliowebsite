@@ -326,29 +326,57 @@ const projectsData = {
   },
 
   // Video Editing Projects
-  "corporate-video": {
-    title: "Corporate Overview Video",
+  "fashion-city": {
+    title: "Fashion City",
     category: "Video Editing",
-    description: "Professional corporate video showcasing company culture and achievements.",
+    description: "A dynamic fashion promotional video showcasing the latest trends and styles.",
     projectType: "multimedia/video-editing",
-    projectName: "corporate-video",
+    projectName: "fashion-city",
     imageSection: "projects",
     imageIndex: 0,
     images: [0],
     imageCount: 1,
-    isMultimedia: true
+    isMultimedia: true,
+    slug: "fashion-city"
   },
-  "product-video": {
-    title: "Product Launch Video",
+  "gengez-khan": {
+    title: "Gengez Khan",
     category: "Video Editing",
-    description: "Engaging product launch video highlighting features and benefits.",
+    description: "Professional video production highlighting the unique aspects of Gengez Khan brand.",
     projectType: "multimedia/video-editing",
-    projectName: "product-video",
+    projectName: "gengez-khan",
     imageSection: "projects",
     imageIndex: 0,
     images: [0],
     imageCount: 1,
-    isMultimedia: true
+    isMultimedia: true,
+    slug: "gengez-khan"
+  },
+  "iman-gadhi": {
+    title: "Iman Gadhi",
+    category: "Video Editing",
+    description: "Engaging video content creation for Iman Gadhi's personal brand.",
+    projectType: "multimedia/video-editing",
+    projectName: "iman-gadhi",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0],
+    imageCount: 1,
+    isMultimedia: true,
+    slug: "iman-gadhi"
+  },
+  "social-media-marketing-agency": {
+    title: "Social Media Marketing Agency",
+    category: "Video Editing",
+    description: "Compelling video content for social media marketing campaigns.",
+    projectType: "multimedia/video-editing",
+    projectName: "social-media-marketing-agency",
+    imageSection: "projects",
+    imageIndex: 0,
+    images: [0],
+    imageCount: 1,
+    isMultimedia: true,
+    slug: "social-media-marketing-agency"
   },
 
   // Graphic Design - Branding Projects
@@ -479,9 +507,12 @@ const projectsData = {
 }
 
 export default async function ProjectPage({ params }: { params: { slug: string } }) {
-  // Fix for Next.js async params issue
-  const slug = await Promise.resolve(params.slug)
-  const project = projectsData[slug as keyof typeof projectsData]
+  // Get the slug from params
+  const { slug } = params
+  const project = {
+    ...projectsData[slug as keyof typeof projectsData],
+    slug // Add slug to the project data
+  }
 
   if (!project) {
     notFound()

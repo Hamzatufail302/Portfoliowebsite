@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import type React from "react"
 import { notFound } from "next/navigation"
 import ProjectContent from "./project-content"
@@ -506,25 +507,32 @@ const projectsData = {
   }
 }
 
-export default async function ProjectPage({ params }: { params: { slug: string } }) {
-  // Properly await and validate params
-  const slug = await (async () => {
-    const validatedSlug = await Promise.resolve(params.slug)
-    if (!validatedSlug) {
-      notFound()
-    }
-    return validatedSlug
-  })()
+type Props = {
+  params: { slug: string }
+}
 
-  const projectData = projectsData[slug as keyof typeof projectsData]
-  if (!projectData) {
+// Generate metadata for the page
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const project = projectsData[params.slug as keyof typeof projectsData]
+  
+  if (!project) {
+    return {
+      title: 'Project Not Found'
+    }
+  }
+
+  return {
+    title: project.title,
+    description: project.description
+  }
+}
+
+export default function ProjectPage({ params }: Props) {
+  const project = projectsData[params.slug as keyof typeof projectsData]
+
+  if (!project) {
     notFound()
   }
 
-  const project = {
-    ...projectData,
-    slug
-  }
-
-  return <ProjectContent project={project} />
+  return <ProjectContent project={{ ...project, slug: params.slug }} />
 }

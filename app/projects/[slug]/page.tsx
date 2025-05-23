@@ -507,15 +507,23 @@ const projectsData = {
 }
 
 export default async function ProjectPage({ params }: { params: { slug: string } }) {
-  // Get the slug from params
-  const { slug } = params
-  const project = {
-    ...projectsData[slug as keyof typeof projectsData],
-    slug // Add slug to the project data
+  // Properly await and validate params
+  const slug = await (async () => {
+    const validatedSlug = await Promise.resolve(params.slug)
+    if (!validatedSlug) {
+      notFound()
+    }
+    return validatedSlug
+  })()
+
+  const projectData = projectsData[slug as keyof typeof projectsData]
+  if (!projectData) {
+    notFound()
   }
 
-  if (!project) {
-    notFound()
+  const project = {
+    ...projectData,
+    slug
   }
 
   return <ProjectContent project={project} />

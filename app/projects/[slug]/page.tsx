@@ -582,7 +582,7 @@ const projectsData: Record<string, ProjectData> = {
 }
 
 export default async function ProjectPage({ params }: { params: { slug: string } }) {
-  // Get the project data based on the slug
+  // Direct access to params.slug is safe in Next.js 13+ Server Components
   const project = projectsData[params.slug]
 
   if (!project) {

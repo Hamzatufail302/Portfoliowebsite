@@ -1,6 +1,7 @@
 import type React from "react"
 import { notFound } from "next/navigation"
 import ProjectContent from "./project-content"
+import { Metadata } from "next"
 
 type ProjectData = {
   title: string
@@ -581,15 +582,23 @@ const projectsData: Record<string, ProjectData> = {
   }
 }
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
-  // Get the project data based on the slug
+type Props = {
+  params: { slug: string }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const project = projectsData[params.slug]
+  if (!project) return { title: 'Project Not Found' }
+  return { title: project.title }
+}
+
+export default function ProjectPage({ params }: Props) {
   const project = projectsData[params.slug]
 
   if (!project) {
     notFound()
   }
 
-  // Ensure all required properties are present
   const projectWithRequiredProps = {
     ...project,
     slug: params.slug,

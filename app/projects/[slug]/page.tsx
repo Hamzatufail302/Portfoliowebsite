@@ -587,7 +587,7 @@ const projectsData: Record<string, ProjectData> = {
 }
 
 export default function ProjectPage({ params }: { params: { slug: string } }) {
-  // Get the slug from params
+  // Get the slug from params - no async needed since we're in a client component
   const { slug } = params
   const project = projectsData[slug]
 

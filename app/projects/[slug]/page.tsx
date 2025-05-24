@@ -1,3 +1,5 @@
+"use client"
+
 import type React from "react"
 import { notFound } from "next/navigation"
 import ProjectContent from "./project-content"
@@ -584,8 +586,8 @@ const projectsData: Record<string, ProjectData> = {
   }
 }
 
-export default async function ProjectPage({ params }: { params: { slug: string } }) {
-  // Get the slug from params - no need to await it
+export default function ProjectPage({ params }: { params: { slug: string } }) {
+  // Get the slug from params
   const { slug } = params
   const project = projectsData[slug]
 

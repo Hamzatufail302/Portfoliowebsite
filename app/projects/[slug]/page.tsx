@@ -588,10 +588,16 @@ const projectsData: Record<string, ProjectData> = {
 
 interface PageProps {
   params: { slug: string }
-  searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export default function Page({ params, searchParams }: PageProps) {
+// Generate static params for all possible slugs
+export async function generateStaticParams() {
+  return Object.keys(projectsData).map((slug) => ({
+    slug,
+  }))
+}
+
+export default function Page({ params }: PageProps) {
   const project = projectsData[params.slug]
 
   if (!project) {

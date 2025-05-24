@@ -13,7 +13,8 @@ const projectsData = {
     projectName: "academic-stars",
     imageSection: "projects",
     imageIndex: 1,
-    images: [1, 2, 3, 4, 5, 6, 7, 8]
+    images: [1, 2, 3, 4, 5, 6, 7, 8],
+    slug: "academic-stars"
   },
   "bloom": {
     title: "Bloom Website",
@@ -182,7 +183,8 @@ const projectsData = {
     images: [0],
     imageCount: 1,
     isMultimedia: true,
-    videoUrl: "https://res.cloudinary.com/di3u607lk/video/upload/v1747042682/video_gzaxtn.mp4"
+    videoUrl: "https://res.cloudinary.com/di3u607lk/video/upload/v1747042682/video_gzaxtn.mp4",
+    slug: "bloom-animation"
   },
   "brand-bridge-animation": {
     title: "Brand Bridge",
@@ -565,13 +567,19 @@ const projectsData = {
 }
 
 export default async function ProjectPage({ params }: { params: { slug: string } }) {
-  // Fix for Next.js async params issue
-  const slug = await Promise.resolve(params.slug)
+  // Handle params properly in Next.js 13+
+  const { slug } = params
   const project = projectsData[slug as keyof typeof projectsData]
 
   if (!project) {
     notFound()
   }
 
-  return <ProjectContent project={project} />
+  // Add missing slug property to project data if not present
+  const projectWithSlug = {
+    ...project,
+    slug: slug
+  }
+
+  return <ProjectContent project={projectWithSlug} />
 }

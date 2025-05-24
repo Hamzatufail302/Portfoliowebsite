@@ -85,7 +85,7 @@ export default function VideoPlayer({ src, poster }: VideoPlayerProps) {
   }, []);
 
   return (
-    <div className="relative aspect-video w-[110%] -ml-[5%] transform group">
+    <div className="relative aspect-video w-[110%] -ml-[5%] transform">
       <video
         ref={videoRef}
         className="w-full h-[105%] rounded-lg"
@@ -102,11 +102,14 @@ export default function VideoPlayer({ src, poster }: VideoPlayerProps) {
         Your browser does not support the video tag.
       </video>
       {!isPlaying && isLoaded && !hasError && (
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="w-20 h-20 rounded-full bg-black/40 flex items-center justify-center transition-all duration-300 transform group-hover:scale-110 group-hover:bg-black/60">
-            <Play className="w-12 h-12 text-white/90 fill-white/90 transition-all duration-300 group-hover:text-white group-hover:fill-white" />
+        <button 
+          onClick={handlePlayPause}
+          className="absolute inset-0 flex items-center justify-center bg-black/30 rounded-lg transition-opacity duration-300 hover:bg-black/50 cursor-pointer group"
+        >
+          <div className="w-16 h-16 flex items-center justify-center bg-white/10 backdrop-blur-sm rounded-full transition-transform duration-300 group-hover:scale-110 group-hover:bg-white/20">
+            <Play className="w-8 h-8 text-white" />
           </div>
-        </div>
+        </button>
       )}
       {!isLoaded && !hasError && (
         <div className="absolute inset-0 flex items-center justify-center bg-[#f8fafc] dark:bg-[#0f172a]">

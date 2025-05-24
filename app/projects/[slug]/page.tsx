@@ -586,10 +586,13 @@ const projectsData: Record<string, ProjectData> = {
   }
 }
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
-  // Get the slug from params - no async needed since we're in a client component
-  const { slug } = params
-  const project = projectsData[slug]
+interface PageProps {
+  params: { slug: string }
+}
+
+// Remove async since we're not doing any async operations
+export default function Page({ params }: PageProps) {
+  const project = projectsData[params.slug]
 
   if (!project) {
     notFound()
@@ -598,7 +601,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
   // Ensure all required properties are present
   const projectWithDefaults = {
     ...project,
-    slug,
+    slug: params.slug,
     images: project.images || [],
     isMultimedia: project.isMultimedia || false,
     projectType: project.projectType || '',

@@ -593,7 +593,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default function ProjectPage({ params }: Props) {
-  const project = projectsData[params.slug]
+  // Access params.slug directly since this is a Server Component
+  const slug = params.slug
+  const project = projectsData[slug]
 
   if (!project) {
     notFound()
@@ -601,7 +603,7 @@ export default function ProjectPage({ params }: Props) {
 
   const projectWithRequiredProps = {
     ...project,
-    slug: params.slug,
+    slug: slug,
     images: project.images || [],
     imageSection: project.imageSection || "projects",
     imageIndex: project.imageIndex || 1

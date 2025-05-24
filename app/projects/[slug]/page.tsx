@@ -2,8 +2,25 @@ import type React from "react"
 import { notFound } from "next/navigation"
 import ProjectContent from "./project-content"
 
+type ProjectData = {
+  title: string
+  category: string
+  description: string
+  projectType?: string
+  projectName?: string
+  imageSection: string
+  imageIndex: number
+  images?: number[]
+  isMultimedia?: boolean
+  videoUrl?: string
+  videoUrls?: string[]
+  image?: string
+  imageCount?: number
+  slug?: string
+}
+
 // Sample project data - in a real app, this would come from a database or API
-const projectsData = {
+const projectsData: Record<string, ProjectData> = {
   // Web UI Projects
   "academic-stars": {
     title: "Academic Stars Website",
@@ -565,13 +582,21 @@ const projectsData = {
 }
 
 export default async function ProjectPage({ params }: { params: { slug: string } }) {
-  // Fix for Next.js async params issue
-  const slug = await Promise.resolve(params.slug)
-  const project = projectsData[slug as keyof typeof projectsData]
+  // Get the project data based on the slug
+  const project = projectsData[params.slug]
 
   if (!project) {
     notFound()
   }
 
-  return <ProjectContent project={project} />
+  // Ensure all required properties are present
+  const projectWithRequiredProps = {
+    ...project,
+    slug: params.slug,
+    images: project.images || [],
+    imageSection: project.imageSection || "projects",
+    imageIndex: project.imageIndex || 1
+  }
+
+  return <ProjectContent project={projectWithRequiredProps} />
 }

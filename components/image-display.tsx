@@ -34,30 +34,40 @@ export default function ImageDisplay({
   loading,
   sizes
 }: ImageDisplayProps) {
-  // Memoize image path calculation
-  const imagePath = useMemo(() => {
+  // Construct the image path based on the project type and index
+  const getImagePath = () => {
+    // For Upward project, use specific path
     if (projectName === "upward") {
-      return `image-${index}`;
+      return `image-${index}`; // Use index directly since we're using one-based indices
     }
+    // For hero and about sections, use direct path
     if (projectType === "hero" || projectType === "about" || projectType === "testimonials") {
-      return `/images/${projectType === "testimonials" ? "projects/testimonials" : projectType}/image-${index + 1}.png`;
+      return `/images/${projectType === "testimonials" ? "projects/testimonials" : projectType}/image-${index + 1}.png`
     }
-    return `/images/projects/${projectType}/${projectName}/image-${index}.png`;
-  }, [projectName, projectType, index]);
+    // For all other project types (including print design)
+    return `/images/projects/${projectType}/${projectName}/image-${index}.png`
+  }
 
   const [imageSrc, setImageSrc] = useState(() => {
-    const finalSrc = projectName === 'upward' ? getCloudinaryUrl(imagePath) : imagePath;
+    const path = getImagePath();
+    console.log('Project type:', projectType);
+    console.log('Project name:', projectName);
+    console.log('Generated path:', path);
+    const finalSrc = projectName === 'upward' ? getCloudinaryUrl(path) : path;
+    console.log('Final image src:', finalSrc);
     return finalSrc;
-  });
+  })
   
   const [error, setError] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
 
   const handleError = useCallback(() => {
-    setError(true);
-    setImageSrc(fallbackSrc);
-  }, [fallbackSrc]);
+    console.error('Image loading error for:', imageSrc);
+    console.log('Falling back to:', fallbackSrc);
+    setError(true)
+    setImageSrc(fallbackSrc)
+  }, [fallbackSrc, imageSrc])
 
   const handlePlayPause = useCallback(() => {
     if (videoRef.current) {
@@ -81,6 +91,8 @@ export default function ImageDisplay({
     if (videoUrl && index === 0) {
       // Always use Cloudinary URL for videos
       const videoSrc = getCloudinaryVideoUrl(videoUrl);
+      console.log('Video URL:', videoUrl);
+      console.log('Transformed video URL:', videoSrc);
 
       return (
         <div className="relative group">
@@ -120,7 +132,7 @@ export default function ImageDisplay({
     return null
   }, [videoUrl, index, className, imageSrc, isPlaying, handlePlayPause, handleVideoStateChange])
 
-  // Memoize image props for better performance
+  // Memoize image props to prevent unnecessary re-renders
   const imageProps = useMemo(() => ({
     src: imageSrc,
     alt,
@@ -128,13 +140,20 @@ export default function ImageDisplay({
     height,
     className,
     onError: handleError,
-    sizes: sizes || "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
-    quality: 100,
-    loading: priority ? undefined : (loading || "lazy"),
+    sizes,
+    quality: 85,
+    ...(priority ? { priority: true } : { loading: loading || "lazy" })
+  }), [
+    imageSrc,
+    alt,
+    width,
+    height,
+    className,
+    handleError,
+    sizes,
     priority,
-    placeholder: "blur" as const,
-    blurDataURL: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQtJSAyUC08LSw1Njo6MzU+RkpLPj46TT5FVlpaVkdKSk5PS0tLS0tLS0v/2wBDAR",
-  }), [imageSrc, alt, width, height, className, handleError, sizes, priority, loading]);
+    loading
+  ])
 
   if (VideoComponent) {
     return VideoComponent

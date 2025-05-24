@@ -22,6 +22,7 @@ interface Project {
   projectType: string
   projectName: string
   videoUrl?: string
+  videoUrls?: string[]
   images?: number[]
 }
 
@@ -398,6 +399,54 @@ const projectData: Record<string, Project[]> = {
       videoUrl: "/videos/projects/voice-changer/video.mp4"
     }
   ],
+
+  "motion-graphics": [
+    {
+      title: "Logo Animation Collection",
+      category: "Motion Graphics",
+      image: "/videos/motion-graphics/logo-animation/image-1.png",
+      slug: "logo-animation",
+      isMultimedia: true,
+      projectType: "multimedia/motion-graphics",
+      projectName: "logo-animation",
+      videoUrls: [
+        "/videos/motion-graphics/logo-animation/video-1.mp4",
+        "/videos/motion-graphics/logo-animation/video-2.mp4",
+        "/videos/motion-graphics/logo-animation/video-3.mp4"
+      ]
+    },
+    {
+      title: "Messaging Animation",
+      category: "Motion Graphics",
+      image: "/videos/motion-graphics/messaging-animation/image-1.png",
+      slug: "messaging-animation",
+      isMultimedia: true,
+      projectType: "multimedia/motion-graphics",
+      projectName: "messaging-animation",
+      videoUrl: "/videos/motion-graphics/messaging-animation/video-1.mp4"
+    },
+    {
+      title: "Illustration Animation",
+      category: "Motion Graphics",
+      image: "/videos/motion-graphics/illustration-animation/image-1.png",
+      slug: "illustration-animation",
+      isMultimedia: true,
+      projectType: "multimedia/motion-graphics",
+      projectName: "illustration-animation",
+      videoUrl: "/videos/motion-graphics/illustration-animation/video-1.mp4"
+    },
+    {
+      title: "Onboarding Animation",
+      category: "Motion Graphics",
+      image: "/videos/motion-graphics/onboarding-animation/image-1.png",
+      slug: "onboarding-animation",
+      isMultimedia: true,
+      projectType: "multimedia/motion-graphics",
+      projectName: "onboarding-animation",
+      videoUrl: "/videos/motion-graphics/onboarding-animation/video-1.mp4"
+    }
+  ],
+
   "video-editing": [
     {
       title: "Fashion City",

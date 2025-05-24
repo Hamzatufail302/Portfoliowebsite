@@ -18,6 +18,7 @@ export default function MultimediaPage() {
   // Filter categories for Multimedia
   const filterCategories = [
     { id: "animations", name: "Lottie Animation/Motion Graphic" },
+    { id: "motion-graphics", name: "Motion Graphics" },
     { id: "video-editing", name: "Video Editing" },
   ]
 

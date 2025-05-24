@@ -1,5 +1,6 @@
-import { useRef, useState, useEffect } from "react"
+import { useRef, useState, useEffect, useMemo, useCallback } from "react"
 import { getCloudinaryVideoUrl } from "@/utils/cloudinary"
+import { Play } from "lucide-react"
 
 interface VideoPlayerProps {
   src: string
@@ -12,121 +13,111 @@ export default function VideoPlayer({ src, poster }: VideoPlayerProps) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [hasError, setHasError] = useState(false)
 
+  // Memoize video URL transformation
+  const videoUrl = useMemo(() => 
+    src.includes('/upward/') ? getCloudinaryVideoUrl(src) : src,
+    [src]
+  );
+
   useEffect(() => {
-    // Reset states when src changes
-    setIsLoaded(false)
-    setHasError(false)
-    setIsPlaying(false)
+    let mounted = true;
 
-    // Pre-load the video
-    if (videoRef.current) {
-      videoRef.current.load()
-    }
-  }, [src])
-
-  const handlePlayPause = async () => {
-    if (videoRef.current) {
+    const loadVideo = async () => {
+      if (!videoRef.current) return;
+      
       try {
-      if (videoRef.current.paused) {
-          // Force reload before playing if it's the first play
-          if (!isLoaded) {
-            videoRef.current.load()
-          }
-          await videoRef.current.play()
-      } else {
-        videoRef.current.pause()
+        videoRef.current.load();
+        if (mounted) {
+          setIsLoaded(false);
+          setHasError(false);
+          setIsPlaying(false);
         }
       } catch (error) {
-        console.error('Video playback error:', error)
-        setHasError(true)
+        if (mounted) {
+          setHasError(true);
+        }
       }
-    }
-  }
+    };
 
-  const handleVideoStateChange = () => {
+    loadVideo();
+
+    return () => {
+      mounted = false;
     if (videoRef.current) {
-      setIsPlaying(!videoRef.current.paused)
+        videoRef.current.pause();
+        videoRef.current.src = '';
+        videoRef.current.load();
+      }
+    };
+  }, [videoUrl]);
+
+  const handlePlayPause = useCallback(async () => {
+    if (!videoRef.current) return;
+
+    try {
+      if (videoRef.current.paused) {
+        if (!isLoaded) {
+          videoRef.current.load();
+        }
+        await videoRef.current.play();
+      } else {
+        videoRef.current.pause();
+      }
+    } catch (error) {
+      setHasError(true);
     }
-  }
+  }, [isLoaded]);
 
-  const handleLoadedData = () => {
-    setIsLoaded(true)
-    setHasError(false)
-  }
+  const handleVideoStateChange = useCallback(() => {
+    if (videoRef.current) {
+      setIsPlaying(!videoRef.current.paused);
+    }
+  }, []);
 
-  const handleError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
-    const target = e.currentTarget
-    console.error('Video error:', target.error)
-    setHasError(true)
-    setIsLoaded(true) // Stop showing loading spinner
-  }
+  const handleLoadedData = useCallback(() => {
+    setIsLoaded(true);
+    setHasError(false);
+  }, []);
 
-  // Transform video URL if it's from the Upward project
-  const videoUrl = src.includes('/upward/') ? getCloudinaryVideoUrl(src) : src;
+  const handleError = useCallback(() => {
+    setHasError(true);
+    setIsLoaded(true);
+  }, []);
 
   return (
-    <div className="relative group max-w-4xl mx-auto">
-      <div className="relative w-full aspect-video bg-black rounded-lg">
+    <div className="relative aspect-video w-[110%] -ml-[5%] transform group">
       <video
         ref={videoRef}
-          className="absolute inset-0 w-full h-full rounded-lg object-contain"
+        className="w-full h-[105%] rounded-lg"
         controls
         preload="metadata"
         playsInline
         poster={poster}
         onPlay={handleVideoStateChange}
         onPause={handleVideoStateChange}
-          onLoadedData={handleLoadedData}
-          onError={handleError}
-          onLoadStart={() => setIsLoaded(false)}
+        onLoadedData={handleLoadedData}
+        onError={handleError}
       >
         <source src={videoUrl} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-        {/* Play button overlay - only show when video is not playing, is loaded, and has no errors */}
-        {!isPlaying && isLoaded && !hasError && (
-        <div 
-          className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors cursor-pointer"
-          onClick={handlePlayPause}
-        >
-          <div className="w-16 h-16 flex items-center justify-center rounded-full bg-white/90 group-hover:bg-white transition-colors">
-            <svg 
-              className="w-8 h-8 text-[#FF5D3A] translate-x-0.5" 
-              fill="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path d="M8 5v14l11-7z" />
-            </svg>
+      {!isPlaying && isLoaded && !hasError && (
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="w-20 h-20 rounded-full bg-black/40 flex items-center justify-center transition-all duration-300 transform group-hover:scale-110 group-hover:bg-black/60">
+            <Play className="w-12 h-12 text-white/90 fill-white/90 transition-all duration-300 group-hover:text-white group-hover:fill-white" />
           </div>
         </div>
       )}
-        {/* Loading indicator */}
-        {!isLoaded && !hasError && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-12 h-12 border-4 border-[#FF5D3A] border-t-transparent rounded-full animate-spin"></div>
-          </div>
-        )}
-        {/* Error message */}
-        {hasError && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/50 text-white">
-            <div className="text-center">
-              <p className="mb-2">Failed to load video</p>
-              <button 
-                onClick={() => {
-                  setHasError(false)
-                  setIsLoaded(false)
-                  if (videoRef.current) {
-                    videoRef.current.load()
-                  }
-                }}
-                className="px-4 py-2 bg-[#FF5D3A] rounded-lg hover:bg-[#FF4444] transition-colors"
-              >
-                Retry
-              </button>
-            </div>
-          </div>
-        )}
-      </div>
+      {!isLoaded && !hasError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-[#f8fafc] dark:bg-[#0f172a]">
+          <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+        </div>
+      )}
+      {hasError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-[#f8fafc] dark:bg-[#0f172a]">
+          <p className="text-red-500">Error loading video</p>
+        </div>
+      )}
     </div>
-  )
+  );
 } 

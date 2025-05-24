@@ -503,6 +503,64 @@ const projectsData = {
     imageSection: "projects",
     imageIndex: 1,
     images: [1, 2, 3, 4, 5, 6]
+  },
+
+  // Motion Graphics Projects
+  "logo-animation": {
+    title: "Logo Animation Collection",
+    category: "Motion Graphics",
+    description: "A collection of dynamic logo animations showcasing various styles and techniques in motion design.",
+    projectType: "multimedia/motion-graphics",
+    projectName: "logo-animation",
+    imageSection: "projects",
+    imageIndex: 1,
+    isMultimedia: true,
+    slug: "logo-animation",
+    image: "/videos/motion-graphics/logo-animation/image-1.png",
+    videoUrls: [
+      "/videos/motion-graphics/logo-animation/video-1.mp4",
+      "/videos/motion-graphics/logo-animation/video-2.mp4",
+      "/videos/motion-graphics/logo-animation/video-3.mp4"
+    ]
+  },
+  "messaging-animation": {
+    title: "Messaging Animation",
+    category: "Motion Graphics",
+    description: "A modern and engaging messaging app animation that brings user interactions to life.",
+    projectType: "multimedia/motion-graphics",
+    projectName: "messaging-animation",
+    imageSection: "projects",
+    imageIndex: 1,
+    isMultimedia: true,
+    slug: "messaging-animation",
+    image: "/videos/motion-graphics/messaging-animation/image-1.png",
+    videoUrl: "/videos/motion-graphics/messaging-animation/video-1.mp4"
+  },
+  "illustration-animation": {
+    title: "Illustration Animation",
+    category: "Motion Graphics",
+    description: "Creative illustration animations that combine artistry with motion to tell compelling stories.",
+    projectType: "multimedia/motion-graphics",
+    projectName: "illustration-animation",
+    imageSection: "projects",
+    imageIndex: 1,
+    isMultimedia: true,
+    slug: "illustration-animation",
+    image: "/videos/motion-graphics/illustration-animation/image-1.png",
+    videoUrl: "/videos/motion-graphics/illustration-animation/video-1.mp4"
+  },
+  "onboarding-animation": {
+    title: "Onboarding Animation",
+    category: "Motion Graphics",
+    description: "Smooth and informative onboarding animations that guide users through app features and functionality.",
+    projectType: "multimedia/motion-graphics",
+    projectName: "onboarding-animation",
+    imageSection: "projects",
+    imageIndex: 1,
+    isMultimedia: true,
+    slug: "onboarding-animation",
+    image: "/videos/motion-graphics/onboarding-animation/image-1.png",
+    videoUrl: "/videos/motion-graphics/onboarding-animation/video-1.mp4"
   }
 }
 

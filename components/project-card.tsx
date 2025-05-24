@@ -41,20 +41,22 @@ export default function ProjectCard({
         <div className="relative aspect-[4/3] overflow-hidden">
           {videoUrl ? (
             <>
-              <video
-                src={videoUrl}
-                className="w-full h-full object-cover object-top"
-                muted
-                loop
-                playsInline
-                onMouseEnter={(e) => e.currentTarget.play()}
-                onMouseLeave={(e) => {
-                  e.currentTarget.pause()
-                  e.currentTarget.currentTime = 0
-                }}
-              >
-                <source src={videoUrl} type="video/mp4" />
-              </video>
+              <div className="w-[110%] h-[105%] -ml-[5%] -mt-[2.5%]">
+                <video
+                  src={videoUrl}
+                  className="w-full h-full object-cover object-top"
+                  muted
+                  loop
+                  playsInline
+                  onMouseEnter={(e) => e.currentTarget.play()}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.pause()
+                    e.currentTarget.currentTime = 0
+                  }}
+                >
+                  <source src={videoUrl} type="video/mp4" />
+                </video>
+              </div>
               <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <PlayCircle className="w-12 h-12 text-white" />
               </div>

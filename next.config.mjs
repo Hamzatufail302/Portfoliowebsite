@@ -23,21 +23,30 @@ const nextConfig = {
     domains: ['res.cloudinary.com'],
     unoptimized: false,
     minimumCacheTTL: 31536000,
-    deviceSizes: [640, 750, 828, 1080, 1200],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256],
-    formats: ['image/webp'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    formats: ['image/webp', 'image/avif'],
   },
   output: 'standalone',
   experimental: {
     webpackBuildWorker: true,
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
+    optimizeCss: true,
+    legacyBrowsers: false,
+    browsersListForSwc: true,
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   poweredByHeader: false,
   compress: true,
+  swcMinify: true,
+  reactStrictMode: true,
+  crossOrigin: 'anonymous',
+  httpAgentOptions: {
+    keepAlive: true,
+  },
 }
 
 if (userConfig) {

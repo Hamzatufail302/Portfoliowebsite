@@ -1,27 +1,9 @@
 import type React from "react"
 import { notFound } from "next/navigation"
 import ProjectContent from "./project-content"
-import { Metadata } from "next"
-
-type ProjectData = {
-  title: string
-  category: string
-  description: string
-  projectType?: string
-  projectName?: string
-  imageSection: string
-  imageIndex: number
-  images?: number[]
-  isMultimedia?: boolean
-  videoUrl?: string
-  videoUrls?: string[]
-  image?: string
-  imageCount?: number
-  slug?: string
-}
 
 // Sample project data - in a real app, this would come from a database or API
-const projectsData: Record<string, ProjectData> = {
+const projectsData = {
   // Web UI Projects
   "academic-stars": {
     title: "Academic Stars Website",
@@ -582,32 +564,14 @@ const projectsData: Record<string, ProjectData> = {
   }
 }
 
-type Props = {
-  params: { slug: string }
-}
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const project = projectsData[params.slug]
-  if (!project) return { title: 'Project Not Found' }
-  return { title: project.title }
-}
-
-export default function ProjectPage({ params }: Props) {
-  // Access params.slug directly since this is a Server Component
-  const slug = params.slug
-  const project = projectsData[slug]
+export default async function ProjectPage({ params }: { params: { slug: string } }) {
+  // Fix for Next.js async params issue
+  const slug = await Promise.resolve(params.slug)
+  const project = projectsData[slug as keyof typeof projectsData]
 
   if (!project) {
     notFound()
   }
 
-  const projectWithRequiredProps = {
-    ...project,
-    slug: slug,
-    images: project.images || [],
-    imageSection: project.imageSection || "projects",
-    imageIndex: project.imageIndex || 1
-  }
-
-  return <ProjectContent project={projectWithRequiredProps} />
+  return <ProjectContent project={project} />
 }

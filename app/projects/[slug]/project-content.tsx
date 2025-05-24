@@ -22,11 +22,9 @@ type ProjectContentProps = {
     images: number[]
     isMultimedia?: boolean
     videoUrl?: string
-    videoUrls?: string[]
     projectName?: string
     projectType?: string
     slug: string
-    image?: string
   }
 }
 
@@ -42,7 +40,7 @@ function ProjectContentInner({ project }: ProjectContentProps) {
   const section = searchParams.get("section") || ""
 
   // Get video path and poster image path
-  const hasVideo = project.videoUrl || project.videoUrls || (project.isMultimedia && project.projectName)
+  const hasVideo = project.videoUrl || (project.isMultimedia && project.projectName)
   const videoPath = project.videoUrl ?? 
     (project.projectType && project.projectName 
       ? `/images/projects/${project.projectType}/${project.projectName}/video.mp4` 
@@ -106,27 +104,9 @@ function ProjectContentInner({ project }: ProjectContentProps) {
           <div className="max-w-[905px] mx-auto">
             {hasVideo ? (
               // Video display for multimedia projects
-              <div className="bg-[#f8fafc] dark:bg-[#0f172a] rounded-lg p-4 md:p-8 w-[110%] -ml-[5%]">
+              <div className="rounded-lg p-4 md:p-8 w-[110%] -ml-[5%]">
                 <div className="h-[105%]">
-                  {project.videoUrls ? (
-                    // Multiple videos
-                    <div className="grid grid-cols-1 gap-8">
-                      {project.videoUrls.map((videoUrl, idx) => (
-                        <div key={idx} className="w-full">
-                          <VideoPlayer 
-                            src={videoUrl} 
-                            poster={project.image || posterPath} 
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    // Single video
-                    <VideoPlayer 
-                      src={videoPath} 
-                      poster={project.image || posterPath} 
-                    />
-                  )}
+                  <VideoPlayer src={videoPath} poster={posterPath} />
                 </div>
               </div>
             ) : hasImageProperties(project) ? (

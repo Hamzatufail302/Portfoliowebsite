@@ -1,6 +1,5 @@
 import { useRef, useState, useEffect, useMemo, useCallback } from "react"
 import { getCloudinaryVideoUrl } from "@/utils/cloudinary"
-import { Play } from "lucide-react"
 
 interface VideoPlayerProps {
   src: string
@@ -101,23 +100,13 @@ export default function VideoPlayer({ src, poster }: VideoPlayerProps) {
         <source src={videoUrl} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      {!isPlaying && isLoaded && !hasError && (
-        <button 
-          onClick={handlePlayPause}
-          className="absolute inset-0 flex items-center justify-center bg-black/30 rounded-lg transition-opacity duration-300 hover:bg-black/50 cursor-pointer group"
-        >
-          <div className="w-16 h-16 flex items-center justify-center bg-white/10 backdrop-blur-sm rounded-full transition-transform duration-300 group-hover:scale-110 group-hover:bg-white/20">
-            <Play className="w-8 h-8 text-white" />
-          </div>
-        </button>
-      )}
       {!isLoaded && !hasError && (
-        <div className="absolute inset-0 flex items-center justify-center bg-[#f8fafc] dark:bg-[#0f172a]">
+        <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
         </div>
       )}
       {hasError && (
-        <div className="absolute inset-0 flex items-center justify-center bg-[#f8fafc] dark:bg-[#0f172a]">
+        <div className="absolute inset-0 flex items-center justify-center">
           <p className="text-red-500">Error loading video</p>
         </div>
       )}

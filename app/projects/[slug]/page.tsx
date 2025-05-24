@@ -590,9 +590,11 @@ interface PageProps {
   params: { slug: string }
 }
 
-// Remove async since we're not doing any async operations
-export default function Page({ params }: PageProps) {
-  const project = projectsData[params.slug]
+// Handle params as async as required by Next.js 13+
+export default async function Page({ params }: PageProps) {
+  // Properly await the params.slug as required by Next.js
+  const slug = await Promise.resolve(params.slug)
+  const project = projectsData[slug]
 
   if (!project) {
     notFound()
@@ -601,7 +603,7 @@ export default function Page({ params }: PageProps) {
   // Ensure all required properties are present
   const projectWithDefaults = {
     ...project,
-    slug: params.slug,
+    slug,
     images: project.images || [],
     isMultimedia: project.isMultimedia || false,
     projectType: project.projectType || '',

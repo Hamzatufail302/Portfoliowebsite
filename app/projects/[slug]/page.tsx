@@ -588,13 +588,11 @@ const projectsData: Record<string, ProjectData> = {
 
 interface PageProps {
   params: { slug: string }
+  searchParams: { [key: string]: string | string[] | undefined }
 }
 
-// Handle params as async as required by Next.js 13+
-export default async function Page({ params }: PageProps) {
-  // Properly await the params.slug as required by Next.js
-  const slug = await Promise.resolve(params.slug)
-  const project = projectsData[slug]
+export default function Page({ params, searchParams }: PageProps) {
+  const project = projectsData[params.slug]
 
   if (!project) {
     notFound()
@@ -603,7 +601,7 @@ export default async function Page({ params }: PageProps) {
   // Ensure all required properties are present
   const projectWithDefaults = {
     ...project,
-    slug,
+    slug: params.slug,
     images: project.images || [],
     isMultimedia: project.isMultimedia || false,
     projectType: project.projectType || '',

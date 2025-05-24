@@ -585,8 +585,8 @@ const projectsData: Record<string, ProjectData> = {
 }
 
 export default async function ProjectPage({ params }: { params: { slug: string } }) {
-  // In Next.js 13+, we need to properly handle async params
-  const slug = await params.slug
+  // Get the slug from params - no need to await it
+  const { slug } = params
   const project = projectsData[slug]
 
   if (!project) {

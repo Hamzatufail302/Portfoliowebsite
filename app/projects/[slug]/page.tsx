@@ -2,8 +2,26 @@ import type React from "react"
 import { notFound } from "next/navigation"
 import ProjectContent from "./project-content"
 
+// Define the project data type
+type ProjectData = {
+  title: string
+  category: string
+  description: string
+  imageSection: string
+  imageIndex: number
+  images?: number[]
+  isMultimedia?: boolean
+  videoUrl?: string
+  videoUrls?: string[]
+  projectName?: string
+  projectType?: string
+  slug?: string
+  image?: string
+  imageCount?: number
+}
+
 // Sample project data - in a real app, this would come from a database or API
-const projectsData = {
+const projectsData: Record<string, ProjectData> = {
   // Web UI Projects
   "academic-stars": {
     title: "Academic Stars Website",
@@ -569,17 +587,24 @@ const projectsData = {
 export default async function ProjectPage({ params }: { params: { slug: string } }) {
   // Handle params properly in Next.js 13+
   const { slug } = params
-  const project = projectsData[slug as keyof typeof projectsData]
+  const project = projectsData[slug]
 
   if (!project) {
     notFound()
   }
 
-  // Add missing slug property to project data if not present
-  const projectWithSlug = {
+  // Ensure all required properties are present
+  const projectWithDefaults = {
     ...project,
-    slug: slug
+    slug,
+    images: project.images || [],
+    isMultimedia: project.isMultimedia || false,
+    projectType: project.projectType || '',
+    projectName: project.projectName || '',
+    image: project.image || '',
+    videoUrl: project.videoUrl || '',
+    videoUrls: project.videoUrls || []
   }
 
-  return <ProjectContent project={projectWithSlug} />
+  return <ProjectContent project={projectWithDefaults} />
 }
